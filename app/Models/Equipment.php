@@ -11,7 +11,13 @@ class Equipment extends Model
 
     protected $fillable = [
         'name',
-        'status'
+        'status',
+        'description',
+        'area_id',
     ];
 
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

@@ -18,6 +18,7 @@ class CreateEquipmentTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('status')->default(1);
+            $table->integer('area_id');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Equipment;
+use App\Models\Area;
 use App\Http\Start\Helpers;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,14 @@ class EquipmentController extends Controller
 
     public function create()
     {
-        return view('admin.equipment.create_edit');
+        $areas = Area::get();
+        $options = [];
+
+        foreach($areas as $area) {
+            $options[$area->id] = $area->name;
+        }
+
+        return view('admin.equipment.create_edit', compact('options'));
     }
 
     /**
@@ -34,7 +42,9 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
+            'area_id' => 'required|integer'
         ];
+
 
         $message = [
             'validation.required' => 'Это поле должно быть заполнено!'
@@ -69,7 +79,14 @@ class EquipmentController extends Controller
         $equipment = Equipment::where('id', $id)->first();
 
         if ($equipment) {
-            return view('admin.equipment.create_edit', compact('equipment'));
+            $areas = Area::get();
+            $options = [];
+
+            foreach($areas as $area) {
+                $options[$area->id] = $area->name;
+            }
+
+            return view('admin.equipment.create_edit', compact('equipment','options'));
         }
 
         abort(404);
@@ -84,6 +101,7 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
+            'area_id' => 'required|integer'
         ];
 
         $message = [
@@ -99,6 +117,7 @@ class EquipmentController extends Controller
             $data['status'] = 0;
             $data['name'] = $request->name;
             $data['description'] = $request->description;
+            $data['area_id'] = $request->area_id;
 
             if ($request->input('status')){
                 $data['status'] = 1;

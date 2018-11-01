@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2>{!! isset($equipment) ? 'Редактирование' : 'Добавление' !!} роли</h2>
+    <h2>{!! isset($equipment) ? 'Редактирование' : 'Добавление' !!} оборудования</h2>
 
     <div class="row-fluid">
 
@@ -48,6 +48,21 @@
                                 @if ($errors->has('description'))
                                     <span class="text-danger">{{ $errors->first('description') }}</span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('area_id', 'Производственный участок*', ['class' => 'col-sm-3 control-label']) !!}
+
+                            <div class="col-sm-6">
+
+                                {!! Form::select('area_id', $options, isset($equipment) ? $equipment->area_id : null, ['placeholder' => 'Выберите', 'class' => 'form-control']) !!}
+
+                                @if ($errors->has('area_id'))
+                                    <span class="text-danger">{{ $errors->first('area_id') }}</span>
+                                @endif
+
                             </div>
                         </div>
 

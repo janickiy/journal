@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Start\Helpers;
 use App\User;
-use App\Models\{Role, RoleUser};
+use App\Models\{Role, RoleUser, Area};
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -33,14 +33,20 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-
         $role_options = [];
 
         foreach ($roles as $role) {
             $role_options[$role->id] = $role->name;
         }
 
-        return view('admin.user.create_edit', compact('role_options'));
+        $areas = Area::get();
+        $options = [];
+
+        foreach($areas as $area) {
+            $options[$area->id] = $area->name;
+        }
+
+        return view('admin.user.create_edit', compact('role_options','options'));
     }
 
     /**
@@ -57,6 +63,7 @@ class UserController extends Controller
             'password' => 'min:3|required',
             'password_confirmation' => 'min:3|same:password',
             'role_id' => 'required',
+            'area_id' => 'numeric|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -109,16 +116,27 @@ class UserController extends Controller
     {
         if (!is_numeric($id)) abort($id);
 
-        $roles = Role::get();
         $userData = User::where('id', '=', $id)->first();
 
-        $role_options = [];
+        if ($userData) {
+            $roles = Role::get();
+            $role_options = [];
 
-        foreach ($roles as $role) {
-            $role_options[$role->id] = $role->name;
+            foreach ($roles as $role) {
+                $role_options[$role->id] = $role->name;
+            }
+
+            $areas = Area::get();
+            $options = [];
+
+            foreach($areas as $area) {
+                $options[$area->id] = $area->name;
+            }
+
+            return view('admin.user.create_edit', compact('roles', 'userData', 'role_options', 'options'));
         }
 
-        return view('admin.user.create_edit', compact('roles', 'userData', 'role_options'));
+        abort(404);
     }
 
     /**
@@ -137,6 +155,7 @@ class UserController extends Controller
             'role_id' => 'required',
             'password' => 'min:6|nullable',
             'password_confirmation' => 'min:6|same:password|nullable',
+            'area_id' => 'numeric|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -147,6 +166,7 @@ class UserController extends Controller
 
             $data['name'] = $request->name;
             $data['role_id'] = $request->role_id;
+            $data['area_id'] = $request->area_id;
             $data['notifyDetectedFault'] = 0;
 
             if ($request->notifyDetectedFault) {

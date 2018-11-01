@@ -39,6 +39,7 @@
                         <tr>
                             <th data-hide="phone"> Название</th>
                             <th data-hide="phone"> Описание</th>
+                            <th data-hide="phone"> Производственный участок</th>
                             <th data-hide="phone"> Статус</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
@@ -73,6 +74,7 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'description', name: 'description'},
+                    {data: 'area', name: 'area'},
                     {data: 'status', name: 'status'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],

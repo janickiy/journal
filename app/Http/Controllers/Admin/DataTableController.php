@@ -65,6 +65,10 @@ class DataTableController extends Controller
                 return $equipment->status ? 'активно' : 'неактивно';
             })
 
+            ->editColumn('area', function ($equipment) {
+                return isset($equipment->area->name) ? $equipment->area->name : '';
+            })
+
             ->addColumn('actions', function ($equipment) {
                 $editBtn = Helpers::has_permission(Auth::user()->id, 'edit_equipment') ? '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('admin.equipment.edit', ['id' => $equipment->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;' : '';
                 $deleteBtn = Helpers::has_permission(Auth::user()->id, 'delete_equipment') ? '<a class="btn btn-xs btn-danger deleteRow" id="' . $equipment->id . '"><span class="fa fa-remove"></span></a>' : '';

@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable();
             $table->boolean('notifyDetectedFault')->default(0);
             $table->boolean('notifyFaultFix')->default(0);
+            $table->integer('area_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

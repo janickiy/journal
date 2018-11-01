@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 01 2018 г., 16:47
+-- Время создания: Ноя 01 2018 г., 17:32
 -- Версия сервера: 10.1.34-MariaDB
 -- Версия PHP: 7.2.7
 
@@ -55,6 +55,7 @@ CREATE TABLE `equipment` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
+  `area_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -64,9 +65,9 @@ CREATE TABLE `equipment` (
 -- Дамп данных таблицы `equipment`
 --
 
-INSERT INTO `equipment` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Оборудование 12', NULL, 1, '2018-10-31 12:56:30', '2018-11-01 11:55:57'),
-(2, 'rytu', NULL, 0, '2018-10-31 22:55:39', '2018-11-01 12:13:47');
+INSERT INTO `equipment` (`id`, `name`, `description`, `area_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Оборудование 12', NULL, 8, 1, '2018-10-31 12:56:30', '2018-11-01 13:17:18'),
+(2, 'rytu', NULL, 0, 0, '2018-10-31 22:55:39', '2018-11-01 12:13:47');
 
 -- --------------------------------------------------------
 
@@ -261,6 +262,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notifyDetectedFault` tinyint(1) NOT NULL DEFAULT '0',
   `notifyFaultFix` tinyint(1) NOT NULL DEFAULT '0',
+  `area_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -269,8 +271,8 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `type`, `name`, `email`, `password`, `avatar`, `provider`, `provider_id`, `remember_token`, `notifyDetectedFault`, `notifyFaultFix`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin', 'admin@yandex.ru', '$2y$10$WkbOVND7enabohOUqXkHS.hIhiTSyHqxIr9cP6iE7gJo8hInCS6oi', NULL, NULL, NULL, 'dUFZZYehA1xskAGCgCkdawjZfZZtDyvKzIYRaeB2QBaz7zTtgyA8Swn5UlGr', 0, 1, '2018-10-20 21:13:57', '2018-11-01 12:08:28');
+INSERT INTO `users` (`id`, `role_id`, `type`, `name`, `email`, `password`, `avatar`, `provider`, `provider_id`, `remember_token`, `notifyDetectedFault`, `notifyFaultFix`, `area_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 'admin', 'admin', 'admin@yandex.ru', '$2y$10$WkbOVND7enabohOUqXkHS.hIhiTSyHqxIr9cP6iE7gJo8hInCS6oi', NULL, NULL, NULL, 'dUFZZYehA1xskAGCgCkdawjZfZZtDyvKzIYRaeB2QBaz7zTtgyA8Swn5UlGr', 0, 1, NULL, '2018-10-20 21:13:57', '2018-11-01 13:31:53');
 
 -- --------------------------------------------------------
 
