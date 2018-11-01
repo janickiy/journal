@@ -53,7 +53,7 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('published', 'Активна', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('status', 'Активна', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">
                                 <label class="check">{!! Form::checkbox('status', 1, isset($equipment) ? ($equipment->status ? true : false) : true, ['class'=>'minimal']) !!}

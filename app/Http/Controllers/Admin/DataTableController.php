@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\Settings;
 use App\Models\Equipment;
 use App\Models\Area;
+use App\Models\WorkTypes;
 use App\Http\Start\Helpers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -27,6 +28,14 @@ class DataTableController extends Controller
         $users = User::all();
 
         return Datatables::of($users)
+
+            ->editColumn('notifyDetectedFault', function ($users) {
+                return $users->notifyDetectedFault ? 'да' : 'нет';
+            })
+
+            ->editColumn('notifyFaultFix', function ($users) {
+                return $users->notifyFaultFix ? 'да' : 'нет';
+            })
 
             ->addColumn('actions', function ($users) {
                 $editBtn = '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('admin.user.edit', ['id' => $users->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;';
@@ -52,6 +61,10 @@ class DataTableController extends Controller
 
         return Datatables::of($equipment)
 
+            ->editColumn('status', function ($equipment) {
+                return $equipment->status ? 'активно' : 'неактивно';
+            })
+
             ->addColumn('actions', function ($equipment) {
                 $editBtn = Helpers::has_permission(Auth::user()->id, 'edit_equipment') ? '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('admin.equipment.edit', ['id' => $equipment->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;' : '';
                 $deleteBtn = Helpers::has_permission(Auth::user()->id, 'delete_equipment') ? '<a class="btn btn-xs btn-danger deleteRow" id="' . $equipment->id . '"><span class="fa fa-remove"></span></a>' : '';
@@ -71,6 +84,22 @@ class DataTableController extends Controller
             ->addColumn('actions', function ($area) {
                 $editBtn = Helpers::has_permission(Auth::user()->id, 'edit_area') ? '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('admin.area.edit', ['id' => $area->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;' : '';
                 $deleteBtn = Helpers::has_permission(Auth::user()->id, 'delete_area') ? '<a class="btn btn-xs btn-danger deleteRow" id="' . $area->id . '"><span class="fa fa-remove"></span></a>' : '';
+
+                return $editBtn . $deleteBtn;
+            })
+
+            ->rawColumns(['actions'])->make(true);
+    }
+
+    public function getWorktypes()
+    {
+         $workTypes = WorkTypes::all();
+
+        return Datatables::of($workTypes)
+
+            ->addColumn('actions', function ($workTypes) {
+                $editBtn = '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('admin.worktypes.edit', ['id' => $workTypes->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;';
+                $deleteBtn = '<a class="btn btn-xs btn-danger deleteRow" id="' . $workTypes->id . '"><span class="fa fa-remove"></span></a>';
 
                 return $editBtn . $deleteBtn;
             })

@@ -6,9 +6,7 @@
 
 @endsection
 
-
 @section('content')
-
 
     <h2>{{ $title }}</h2>
 
@@ -24,15 +22,13 @@
                 <!-- widget div-->
                 <div>
 
-                    @if(Helpers::has_permission(Auth::user()->id, 'add_area'))
-                        <div class="box-header">
-                            <div class="row">
-                                <div class="col-md-12 padding-bottom-10">
-                                    <a href="{{ URL::route('admin.area.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить участок</a>
-                                </div>
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-md-12 padding-bottom-10">
+                                <a href="{{ URL::route('admin.area.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить тип работы</a>
                             </div>
                         </div>
-                    @endif
+                    </div>
 
                     <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
                         <thead>
@@ -63,12 +59,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $("#itemList").DataTable({
-                'createdRow': function( row, data, dataIndex ) {
+                'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },
                 processing: true,
                 serverSide: true,
-                ajax: '{!! URL::route('admin.datatable.area') !!}',
+                ajax: '{!! URL::route('admin.datatable.worktypes') !!}',
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'code', name: 'code'},
@@ -93,15 +89,15 @@
                         confirmButtonText: "Да, удалить!",
                         closeOnConfirm: false
                     },
-                    function(isConfirm){
+                    function (isConfirm) {
                         if (!isConfirm) return;
                         $.ajax({
-                            url: SITE_URL + "/admin/area/delete/" + rowid,
+                            url: SITE_URL + "/admin/worktypes/delete/" + rowid,
                             type: "DELETE",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#rowid_"+rowid).remove();
+                                $("#rowid_" + rowid).remove();
                                 swal("Сделано!", "Данные успешно удаленны!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar', 255)->nullable()->default(NULL);
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
+            $table->boolean('notifyDetectedFault')->default(0);
+            $table->boolean('notifyFaultFix')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

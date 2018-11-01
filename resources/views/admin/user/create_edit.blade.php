@@ -136,6 +136,31 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+
+                            {!! Form::label('notifyDetectedFault', 'Уведомлять об обнаруженной неисправности', ['class' => 'col-sm-3 control-label']) !!}
+
+                            <div class="col-sm-6">
+                                <label class="check">{!! Form::checkbox('notifyDetectedFault', 1, isset($userData) ? ($userData->notifyDetectedFault ? true : false) : false, ['class'=>'minimal']) !!}
+                                    Да
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            {!! Form::label('notifyFaultFix', 'Уведомлять об исправлении неисправности', ['class' => 'col-sm-3 control-label']) !!}
+
+                            {{ $userData->notifyFaultFix }}
+
+                            <div class="col-sm-6">
+                                <label class="check">{!! Form::checkbox('notifyFaultFix', 1, isset($userData) ? ($userData->notifyFaultFix ? true : false) : false, ['class'=>'minimal']) !!}
+                                    Да
+                                </label>
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="box-footer">
                         <div class="col-sm-4">

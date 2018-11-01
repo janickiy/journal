@@ -78,7 +78,19 @@ class UserController extends Controller
                 })->save($destinationPath . '/' . $filename);
             }
 
-            $result = User::create(array_merge($request->all(), ['password' => Hash::make($request->password), 'avatar' => isset($filename) ? $filename : null]));
+            $notifyDetectedFault = 0;
+
+            if ($request->notifyDetectedFault) {
+                $notifyDetectedFault = 1;
+            }
+
+            $notifyFaultFix = 0;
+
+            if ($request->notifyFaultFix) {
+                $notifyFaultFix = 1;
+            }
+
+            $result = User::create(array_merge($request->all(), ['notifyDetectedFault' => $notifyDetectedFault, 'notifyFaultFix' => $notifyFaultFix, 'password' => Hash::make($request->password), 'avatar' => isset($filename) ? $filename : null]));
 
             if ($result) {
                 RoleUser::create(['user_id' => $result->id, 'role_id' => $request->role_id]);
@@ -135,6 +147,17 @@ class UserController extends Controller
 
             $data['name'] = $request->name;
             $data['role_id'] = $request->role_id;
+            $data['notifyDetectedFault'] = 0;
+
+            if ($request->notifyDetectedFault) {
+                $data['notifyDetectedFault'] = 1;
+            }
+
+            $data['notifyFaultFix'] = 0;
+
+            if ($request->notifyFaultFix) {
+                $data['notifyFaultFix'] = 1;
+            }
 
             if (!empty($request->password) && !empty($request->confirm_password)) {
                 $data['password'] = Hash::make($request->password);

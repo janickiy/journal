@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Equipment extends Model
+class WorkTypes extends Model
 {
-	protected $table = 'equipment';
+	protected $table = 'worktypes';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
-        'status'
+        'code',
     ];
-
 }

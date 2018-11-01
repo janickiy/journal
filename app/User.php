@@ -16,7 +16,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         //'name', 'email', 'password',
-        'name', 'email', 'password', 'provider', 'provider_id','avatar','role_id'
+        'name',
+        'email',
+        'password',
+        'provider',
+        'provider_id',
+        'avatar',
+        'role_id',
+        'notifyDetectedFault',
+        'notifyFaultFix'
     ];
 
     /**
@@ -33,4 +41,5 @@ class User extends Authenticatable
         return $this->belongsTo(Models\Role::class);
        // return $this->hasOne(Models\Role::class,'id','role_id');
     }
+
 }

@@ -24,7 +24,7 @@
                 <!-- widget div-->
                 <div>
 
-                    @if(Helpers::has_permission(Auth::user()->id, 'add_role'))
+                    @if(Helpers::has_permission(Auth::user()->id, 'add_equipment'))
                         <div class="box-header">
                             <div class="row">
                                 <div class="col-md-12 padding-bottom-10">

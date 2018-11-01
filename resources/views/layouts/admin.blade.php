@@ -182,12 +182,24 @@ Use search to find needed section.
 
         <ul>
 
+            <li {!! Request::is('admin*') ? ' class="active"' : '' !!}>
+                <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-fw fa-book"></i> Журнал</a>
+            </li>
+
+            @if(Helpers::has_permission(Auth::user()->id, 'manage_equipment'))
             <li {!! Request::is('admin/equipment*') ? ' class="active"' : '' !!}>
                 <a href="{{ URL::route('admin.equipment.list') }}"><i class="fa fa-fw fa-list"></i> Оборудование</a>
             </li>
+            @endif
 
+            @if(Helpers::has_permission(Auth::user()->id, 'manage_area'))
             <li {!! Request::is('admin/area*') ? ' class="active"' : '' !!}>
                 <a href="{{ URL::route('admin.area.list') }}"><i class="fa fa-fw fa-list"></i> Участки</a>
+            </li>
+            @endif
+
+            <li {!! Request::is('admin/worktypes*') ? ' class="active"' : '' !!}>
+                <a href="{{ URL::route('admin.worktypes.list') }}"><i class="fa fa-fw fa-list"></i> Типы выполненных работ</a>
             </li>
 
             @if(Helpers::has_permission(Auth::user()->id, 'manage_user'))
@@ -206,7 +218,6 @@ Use search to find needed section.
                 <li {!! Request::is('admin/settings*') ? ' class="active"' : '' !!}>
                     <a href="{{ URL::route('admin.settings.list') }}"><i class="fa fa-fw fa-cogs"></i> Настройки</a>
                 </li>
-
             @endif
 
         </ul>

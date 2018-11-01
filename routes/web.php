@@ -28,7 +28,7 @@ Route::get('/logout', 'Admin\AdminLoginController@logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
-    Route::get('','Admin\DashboardController@index')->name('admin.card');
+    Route::get('','Admin\DashboardController@index')->name('admin.dashboard');
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list','Admin\UserController@index')->name('admin.user.list')->middleware(['permission:manage_user']);
@@ -67,6 +67,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::delete('delete/{id}','Admin\AreaController@destroy')->name('admin.area.delete')->middleware(['permission:delete_area'])->where('id', '[0-9]+');
     });
 
+    Route::group(['prefix' => 'worktypes'], function () {
+        Route::get('list','Admin\WorktypesController@list')->name('admin.worktypes.list');
+        Route::get('create','Admin\WorktypesController@create')->name('admin.worktypes.create');
+        Route::post('save','Admin\WorktypesController@store')->name('admin.worktypes.store');
+        Route::get('edit/{id}','Admin\WorktypesController@edit')->name('admin.worktypes.edit')->where('id', '[0-9]+');
+        Route::put('update','Admin\WorktypesController@update')->name('admin.worktypes.update');
+        Route::delete('delete/{id}','Admin\WorktypesController@destroy')->name('admin.worktypes.delete')->where('id', '[0-9]+');
+    });
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get('list','Admin\SettingsController@list')->name('admin.settings.list');
@@ -85,6 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::any('role', 'Admin\DataTableController@getRole')->name('admin.datatable.role');
         Route::any('equipment', 'Admin\DataTableController@getEquipment')->name('admin.datatable.equipment');
         Route::any('area', 'Admin\DataTableController@getArea')->name('admin.datatable.area');
+        Route::any('worktypes', 'Admin\DataTableController@getWorktypes')->name('admin.datatable.worktypes');
         Route::any('settings', 'Admin\DataTableController@getSettings')->name('admin.datatable.settings');
     });
 });

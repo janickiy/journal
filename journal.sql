@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 01 2018 г., 03:00
--- Версия сервера: 10.1.36-MariaDB
--- Версия PHP: 7.2.10
+-- Время создания: Ноя 01 2018 г., 16:36
+-- Версия сервера: 10.1.34-MariaDB
+-- Версия PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,6 +36,18 @@ CREATE TABLE `area` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `area`
+--
+
+INSERT INTO `area` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
+(2, 'заменили деталь/узел целиком на имеющуюся в наличие', '1', '2018-11-01 09:39:03', '2018-11-01 09:39:03'),
+(3, 'заменили деталь/узел целиком на купленную', '2', '2018-11-01 09:39:28', '2018-11-01 09:39:28'),
+(4, 'заменили деталь/узел целиком на изготовленную', '3', '2018-11-01 09:39:48', '2018-11-01 09:39:48'),
+(5, 'отремонтировали своими силами', '4', '2018-11-01 09:40:50', '2018-11-01 09:41:20'),
+(6, 'отремонтировали на базе сторонней организации', '5', '2018-11-01 09:41:38', '2018-11-01 09:41:57'),
+(7, 'другое', '6', '2018-11-01 09:42:47', '2018-11-01 09:42:47');
+
 -- --------------------------------------------------------
 
 --
@@ -56,8 +68,8 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Оборудование 12', NULL, 1, '2018-10-31 12:56:30', '2018-10-31 22:25:50'),
-(2, 'rytu', NULL, 0, '2018-10-31 22:55:39', '2018-10-31 22:55:39');
+(1, 'Оборудование 12', NULL, 1, '2018-10-31 12:56:30', '2018-11-01 11:55:57'),
+(2, 'rytu', NULL, 0, '2018-10-31 22:55:39', '2018-11-01 12:13:47');
 
 -- --------------------------------------------------------
 
@@ -250,6 +262,8 @@ CREATE TABLE `users` (
   `provider` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `provider_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `notifyDetectedFault` tinyint(1) NOT NULL DEFAULT '0',
+  `notifyFaultFix` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -258,8 +272,22 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `type`, `name`, `email`, `password`, `avatar`, `provider`, `provider_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'admin', 'admin@yandex.ru', '$2y$10$WkbOVND7enabohOUqXkHS.hIhiTSyHqxIr9cP6iE7gJo8hInCS6oi', NULL, NULL, NULL, 'dUFZZYehA1xskAGCgCkdawjZfZZtDyvKzIYRaeB2QBaz7zTtgyA8Swn5UlGr', '2018-10-20 21:13:57', '2018-10-20 21:13:57');
+INSERT INTO `users` (`id`, `role_id`, `type`, `name`, `email`, `password`, `avatar`, `provider`, `provider_id`, `remember_token`, `notifyDetectedFault`, `notifyFaultFix`, `created_at`, `updated_at`) VALUES
+(1, 1, 'admin', 'admin', 'admin@yandex.ru', '$2y$10$WkbOVND7enabohOUqXkHS.hIhiTSyHqxIr9cP6iE7gJo8hInCS6oi', NULL, NULL, NULL, 'dUFZZYehA1xskAGCgCkdawjZfZZtDyvKzIYRaeB2QBaz7zTtgyA8Swn5UlGr', 0, 1, '2018-10-20 21:13:57', '2018-11-01 12:08:28');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `worktypes`
+--
+
+CREATE TABLE `worktypes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Индексы сохранённых таблиц
@@ -315,6 +343,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `worktypes`
+--
+ALTER TABLE `worktypes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -322,7 +356,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `equipment`
@@ -359,6 +393,12 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `worktypes`
+--
+ALTER TABLE `worktypes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

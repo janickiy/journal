@@ -40,6 +40,8 @@
                             <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Имя</th>
                             <th data-hide="phone"><i class="fa fa-fw fa-envelope text-muted hidden-md hidden-sm hidden-xs"></i> Email</th>
                             <th data-hide="phone,tablet"> Роль</th>
+                            <th data-hide="phone,tablet"> Уведомлять<br>обнаруженной неисправности</th>
+                            <th data-hide="phone,tablet"> Уведомлять<br>исправлении неисправности</th>
                             <th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Дата регистрации</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
@@ -114,6 +116,8 @@
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
                     {data: 'role', name: 'role'},
+                    {data: 'notifyDetectedFault', name: 'notifyDetectedFault'},
+                    {data: 'notifyFaultFix', name: 'notifyFaultFix'},
                     {data: 'created_at', name: 'created_at'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}],
             });
