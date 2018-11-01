@@ -1,8 +1,8 @@
 @extends('layouts.frontend')
 
 @section('title', $title)
-@section('description', 'Добавлние сайта')
-@section('keywords', 'белый каталог сайтов, добавиить url, обавить сайт')
+@section('description', '')
+@section('keywords', '')
 
 @section('css')
 

@@ -263,7 +263,7 @@ Use search to find needed section.
 <div class="page-footer">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <span class="txt-color-white">Каталог сайтов © {{ date("Y") }}</span>
+            <span class="txt-color-white">Журнал простоев оборудования © {{ date("Y") }}</span>
         </div>
 
     </div>
