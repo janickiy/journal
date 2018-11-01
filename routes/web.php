@@ -68,7 +68,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     });
 
 
-
     Route::group(['prefix' => 'settings'], function () {
         Route::get('list','Admin\SettingsController@list')->name('admin.settings.list');
         Route::post('store', 'Admin\SettingsController@store')->name('admin.settings.store');
@@ -84,6 +83,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'datatable'], function () {
         Route::any('users', 'Admin\DataTableController@getUsers')->name('admin.datatable.users');
         Route::any('role', 'Admin\DataTableController@getRole')->name('admin.datatable.role');
+        Route::any('equipment', 'Admin\DataTableController@getEquipment')->name('admin.datatable.equipment');
+        Route::any('area', 'Admin\DataTableController@getArea')->name('admin.datatable.area');
         Route::any('settings', 'Admin\DataTableController@getSettings')->name('admin.datatable.settings');
     });
 });

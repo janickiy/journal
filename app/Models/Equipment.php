@@ -23,4 +23,9 @@ class Equipment extends Model
         return $query->where('status', 1);
     }
 
+    public function getStatusAttribute()
+    {
+        return $this->attributes['status'] ? 'опубликован' : 'не опубликован';
+    }
+
 }

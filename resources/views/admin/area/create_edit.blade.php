@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', isset($role) ? 'Редактирование оборудования' : 'Добавление оборудования' )
+@section('title', isset($area) ? 'Редактирование участок' : 'Добавление участок' )
 
 @section('content')
 
-    <h2>{!! isset($equipment) ? 'Редактирование' : 'Добавление' !!} роли</h2>
+    <h2>{!! isset($area) ? 'Редактирование' : 'Добавление' !!} участок</h2>
 
     <div class="row-fluid">
 
@@ -18,9 +18,9 @@
 
                     <p>*-обязательные поля</p>
 
-                    {!! Form::open(['url' => isset($equipment) ? URL::route('admin.equipment.update') : URL::route('admin.equipment.store'), 'method' => isset($equipment) ? 'put' : 'post', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['url' => isset($area) ? URL::route('admin.area.update') : URL::route('admin.area.store'), 'method' => isset($area) ? 'put' : 'post', 'class' => 'form-horizontal']) !!}
 
-                    {!! isset($equipment) ? Form::hidden('id', $equipment->id) : '' !!}
+                    {!! isset($area) ? Form::hidden('id', $area->id) : '' !!}
 
                     <div class="box-body">
                         <div class="form-group">
@@ -29,34 +29,34 @@
 
                             <div class="col-sm-6">
 
-                                {!! Form::text('name', old('name', isset($equipment->name) ? $equipment->name : null), ['class' => 'form-control', 'placeholder'=>'Название', 'id' => 'name']) !!}
+                                {!! Form::text('name', old('name', isset($area->name) ? $area->name : null), ['class' => 'form-control', 'placeholder'=>'Название', 'id' => 'name']) !!}
 
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                         </div>
+                    </div>
 
+                    <div class="box-body">
                         <div class="form-group">
 
-                            {!! Form::label('description', 'Описание', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('code', 'Код*', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">
 
-                                {!! Form::text('description', old('description', isset($setting) ? $setting->description : null), ['class' => 'form-control validate[required]', 'placeholder' => 'Описание']) !!}
+                                {!! Form::text('code', old('code', isset($area->code) ? $area->code : null), ['class' => 'form-control', 'placeholder'=>'Код', 'id' => 'code']) !!}
 
-                                @if ($errors->has('description'))
-                                    <span class="text-danger">{{ $errors->first('description') }}</span>
+                                @if ($errors->has('code'))
+                                    <span class="text-danger">{{ $errors->first('code') }}</span>
                                 @endif
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="box-footer">
                         <div class="col-sm-4">
-                            <a href="{{ URL::route('admin.equipment.list') }}" class="btn btn-danger btn-flat pull-right">Отменить</a>
+                            <a href="{{ URL::route('admin.area.list') }}" class="btn btn-danger btn-flat pull-right">Отменить</a>
                         </div>
                         <div class="col-sm-5 margin-bottom-10">
 

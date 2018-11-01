@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Окт 31 2018 г., 17:09
--- Версия сервера: 10.1.34-MariaDB
--- Версия PHP: 7.2.7
+-- Время создания: Ноя 01 2018 г., 03:00
+-- Версия сервера: 10.1.36-MariaDB
+-- Версия PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,7 +56,8 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`id`, `name`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Оборудование 1', NULL, 1, '2018-10-31 12:56:30', '2018-10-31 12:56:30');
+(1, 'Оборудование 12', NULL, 1, '2018-10-31 12:56:30', '2018-10-31 22:25:50'),
+(2, 'rytu', NULL, 0, '2018-10-31 22:55:39', '2018-10-31 22:55:39');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,11 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (9, 'manage_equipment', 'Просмотр оборудованием', 'Просмотр оборудованием', NULL, NULL),
 (10, 'add_equipment', 'Добавлять оборудование', 'Добавлять оборудование', NULL, NULL),
 (11, 'edit_equipment', 'Редактировать оборудование', 'Редактировать оборудование', NULL, NULL),
-(12, 'delete_equipment', 'Удалять оборудование', 'Удалять оборудование', NULL, NULL);
+(12, 'delete_equipment', 'Удалять оборудование', 'Удалять оборудование', NULL, NULL),
+(13, 'manage_area', 'Просмотр участков', 'Просмотр участков', NULL, NULL),
+(14, 'add_area', 'Добавить участок', 'Добавить участок', NULL, NULL),
+(15, 'edit_area', 'Редактировать участок', 'Редактировать участок', NULL, NULL),
+(16, 'delete_area', 'Удалять участок', 'Удалять участок', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +161,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (9, 1),
 (10, 1),
 (11, 1),
-(12, 1);
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1);
 
 -- --------------------------------------------------------
 
@@ -313,13 +322,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -331,7 +340,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`

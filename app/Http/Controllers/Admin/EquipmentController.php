@@ -18,7 +18,7 @@ class EquipmentController extends Controller
 
     public function list()
     {
-        return view('admin.equipment.list')->with('title', 'Участки');
+        return view('admin.equipment.list')->with('title', 'Оборудование');
     }
 
     public function create()
@@ -68,7 +68,7 @@ class EquipmentController extends Controller
 
         $equipment = Equipment::where('id', $id)->first();
 
-        if (!$equipment) {
+        if ($equipment) {
             return view('admin.equipment.create_edit', compact('equipment'));
         }
 
@@ -86,7 +86,11 @@ class EquipmentController extends Controller
             'name' => 'required',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'validation.required' => 'Это поле должно быть заполнено!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();

@@ -183,14 +183,12 @@ Use search to find needed section.
         <ul>
 
             <li {!! Request::is('admin/equipment*') ? ' class="active"' : '' !!}>
-                <a href="{{ URL::route('admin.equipment.list') }}"><i class="fa fa-fw fa-cogs"></i> Оборудование</a>
+                <a href="{{ URL::route('admin.equipment.list') }}"><i class="fa fa-fw fa-list"></i> Оборудование</a>
             </li>
 
             <li {!! Request::is('admin/area*') ? ' class="active"' : '' !!}>
-                <a href="{{ URL::route('admin.area.list') }}"><i class="fa fa-fw fa-cogs"></i> Участки</a>
+                <a href="{{ URL::route('admin.area.list') }}"><i class="fa fa-fw fa-list"></i> Участки</a>
             </li>
-
-
 
             @if(Helpers::has_permission(Auth::user()->id, 'manage_user'))
                 <li class="">
@@ -199,12 +197,8 @@ Use search to find needed section.
                     </a>
 
                     <ul class="treeview-menu">
-                        <li {!! Request::is('admin/user*') ? ' class="active"' : '' !!}><a
-                                    href="{{ URL::route('admin.user.list') }}"><i class="fa fa-list"></i> Список
-                                пользователей</a></li>
-                        <li {!! Request::is('admin/role*') ? ' class="active"' : '' !!}><a
-                                    href="{{ URL::route('admin.role.list') }}"><i class="fa fa-list"></i> Список
-                                ролей</a>
+                        <li {!! Request::is('admin/user*') ? ' class="active"' : '' !!}><a href="{{ URL::route('admin.user.list') }}"><i class="fa fa-list"></i> Список пользователей</a></li>
+                        <li {!! Request::is('admin/role*') ? ' class="active"' : '' !!}><a href="{{ URL::route('admin.role.list') }}"><i class="fa fa-list"></i> Список ролей</a>
                         </li>
                     </ul>
                 </li>

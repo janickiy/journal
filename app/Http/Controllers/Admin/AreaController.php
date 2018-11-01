@@ -23,9 +23,7 @@ class AreaController extends Controller
 
     public function create()
     {
-        $permissions = Permission::get();
-
-        return view('admin.area.create_edit', compact('permissions'));
+        return view('admin.area.create_edit');
     }
 
     /**
@@ -39,7 +37,11 @@ class AreaController extends Controller
             'code' => 'required'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'validation.required' => 'Это поле должно быть заполнено!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -60,12 +62,11 @@ class AreaController extends Controller
 
         $area = Area::where('id', $id)->first();
 
-        if (!$area) {
+        if ($area) {
             return view('admin.area.create_edit', compact('area'));
         }
 
         abort(404);
-
     }
 
     /**
@@ -79,7 +80,11 @@ class AreaController extends Controller
             'code' => 'required'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'validation.required' => 'Это поле должно быть заполнено!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();

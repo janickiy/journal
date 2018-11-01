@@ -39,6 +39,7 @@
                         <tr>
                             <th data-hide="phone"> Название</th>
                             <th data-hide="phone"> Описание</th>
+                            <th data-hide="phone"> Статус</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -68,11 +69,11 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: '{!! URL::route('admin.datatable.role') !!}',
+                ajax: '{!! URL::route('admin.datatable.equipment') !!}',
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'display_name', name: 'display_name'},
                     {data: 'description', name: 'description'},
+                    {data: 'status', name: 'status'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });
@@ -97,7 +98,7 @@
                     function(isConfirm){
                         if (!isConfirm) return;
                         $.ajax({
-                            url: SITE_URL + "/admin/role/delete/" + rowid,
+                            url: SITE_URL + "/admin/equipment/delete/" + rowid,
                             type: "DELETE",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

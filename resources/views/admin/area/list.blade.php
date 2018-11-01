@@ -28,7 +28,7 @@
                         <div class="box-header">
                             <div class="row">
                                 <div class="col-md-12 padding-bottom-10">
-                                    <a href="{{ URL::route('admin.equipment.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить оборудование</a>
+                                    <a href="{{ URL::route('admin.area.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить участок</a>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <thead>
                         <tr>
                             <th data-hide="phone"> Название</th>
-                            <th data-hide="phone"> Описание</th>
+                            <th data-hide="phone"> Код</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -68,11 +68,10 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: '{!! URL::route('admin.datatable.role') !!}',
+                ajax: '{!! URL::route('admin.datatable.area') !!}',
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'display_name', name: 'display_name'},
-                    {data: 'description', name: 'description'},
+                    {data: 'code', name: 'code'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });
@@ -97,7 +96,7 @@
                     function(isConfirm){
                         if (!isConfirm) return;
                         $.ajax({
-                            url: SITE_URL + "/admin/role/delete/" + rowid,
+                            url: SITE_URL + "/admin/area/delete/" + rowid,
                             type: "DELETE",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
