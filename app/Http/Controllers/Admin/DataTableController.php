@@ -11,6 +11,7 @@ use App\Models\Settings;
 use App\Models\Equipment;
 use App\Models\Area;
 use App\Models\WorkTypes;
+use App\Models\Journal;
 use App\Http\Start\Helpers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,9 @@ class DataTableController extends Controller
 
     }
 
+    /**
+     * @return mixed
+     */
     public function getUsers()
     {
         $users = User::all();
@@ -55,6 +59,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getEquipment()
     {
         $equipment = Equipment::all();
@@ -79,6 +86,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getArea()
     {
         $area = Area::all();
@@ -95,6 +105,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getWorktypes()
     {
          $workTypes = WorkTypes::all();
@@ -111,6 +124,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getRole()
     {
         $role = Role::all();
@@ -127,6 +143,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getSettings()
     {
         $settings = Settings::all();
@@ -141,6 +160,15 @@ class DataTableController extends Controller
             })
 
             ->rawColumns(['actions'])->make(true);
+    }
+
+    public function getJournal()
+    {
+        $journal = Journal::all();
+
+        return Datatables::of($journal)
+
+           ->make(true);
     }
 
 }

@@ -12,5 +12,6 @@ class Area extends Model
     protected $fillable = [
         'name',
         'code',
+        'master',
     ];
 }
