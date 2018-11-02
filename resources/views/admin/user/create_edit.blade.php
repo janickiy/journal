@@ -136,7 +136,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
 
                             {!! Form::label('area_id', 'Производственный участок', ['class' => 'col-sm-3 control-label']) !!}
@@ -157,9 +156,8 @@
                             {!! Form::label('notifyDetectedFault', 'Уведомлять об обнаруженной неисправности', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">
-                                <label class="check">{!! Form::checkbox('notifyDetectedFault', 1, isset($userData) ? ($userData->notifyDetectedFault ? true : false) : false, ['class'=>'minimal']) !!}
-                                    Да
-                                </label>
+                               {!! Form::checkbox('notifyDetectedFault', 1, isset($userData) ? ($userData->notifyDetectedFault ? true : false) : false, ['class'=>'minimal']) !!}
+
                             </div>
                         </div>
 
@@ -167,22 +165,19 @@
 
                             {!! Form::label('notifyFaultFix', 'Уведомлять об исправлении неисправности', ['class' => 'col-sm-3 control-label']) !!}
 
-                            {{ $userData->notifyFaultFix }}
-
                             <div class="col-sm-6">
-                                <label class="check">{!! Form::checkbox('notifyFaultFix', 1, isset($userData) ? ($userData->notifyFaultFix ? true : false) : false, ['class'=>'minimal']) !!}
-                                    Да
-                                </label>
+                                {!! Form::checkbox('notifyFaultFix', 1, isset($userData) ? ($userData->notifyFaultFix ? true : false) : false, ['class'=>'minimal']) !!}
+
                             </div>
                         </div>
 
-
                     </div>
+
                     <div class="box-footer">
                         <div class="col-sm-4">
                             <a href="{{ URL::route('admin.user.list') }}" class="btn btn-danger btn-flat pull-right">Отменить</a>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-5 margin-bottom-10">
 
                             {!! Form::submit( 'Отправить', ['class'=>'btn btn-success']) !!}
 
@@ -193,6 +188,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 

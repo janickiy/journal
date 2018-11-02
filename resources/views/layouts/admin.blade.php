@@ -182,7 +182,7 @@ Use search to find needed section.
 
         <ul>
 
-            <li {!! Request::is('admin*') ? ' class="active"' : '' !!}>
+            <li {!! Request::is('admin') ? ' class="active"' : '' !!}>
                 <a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-fw fa-book"></i> Журнал</a>
             </li>
 

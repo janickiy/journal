@@ -92,6 +92,7 @@ class AreaController extends Controller
 
             $data['name'] = $request->name;
             $data['code'] = $request->code;
+            $data['master'] = $request->master;
 
             Area::where('id', $request->id)->update($data);
 

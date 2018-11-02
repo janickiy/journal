@@ -45,10 +45,26 @@
 
                             <div class="col-sm-6">
 
-                                {!! Form::text('code', old('code', isset($area->code) ? $area->code : null), ['class' => 'form-control', 'placeholder'=>'Код', 'id' => 'code']) !!}
+                                {!! Form::text('code', old('code', isset($area->code) ? $area->code : null), ['class' => 'form-control', 'placeholder' => 'Код', 'id' => 'code']) !!}
 
                                 @if ($errors->has('code'))
                                     <span class="text-danger">{{ $errors->first('code') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="form-group">
+
+                            {!! Form::label('master', 'ФИО мастера производства', ['class' => 'col-sm-3 control-label']) !!}
+
+                            <div class="col-sm-6">
+
+                                {!! Form::text('master', old('code', isset($area->master) ? $area->master : null), ['class' => 'form-control', 'placeholder' => 'ФИО мастера производства', 'id' => 'master']) !!}
+
+                                @if ($errors->has('master'))
+                                    <span class="text-danger">{{ $errors->first('master') }}</span>
                                 @endif
                             </div>
                         </div>

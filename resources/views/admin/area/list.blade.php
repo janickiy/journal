@@ -39,6 +39,7 @@
                         <tr>
                             <th data-hide="phone"> Название</th>
                             <th data-hide="phone"> Код</th>
+                            <th data-hide="phone"> ФИО мастера производства</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -72,6 +73,7 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'code', name: 'code'},
+                    {data: 'master', name: 'master'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });

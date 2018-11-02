@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 01 2018 г., 17:32
--- Версия сервера: 10.1.34-MariaDB
--- Версия PHP: 7.2.7
+-- Время создания: Ноя 02 2018 г., 01:17
+-- Версия сервера: 10.1.36-MariaDB
+-- Версия PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,7 @@ CREATE TABLE `area` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
+  `master` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -40,10 +41,10 @@ CREATE TABLE `area` (
 -- Дамп данных таблицы `area`
 --
 
-INSERT INTO `area` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
-(8, 'участок обрубки и термообработки', 'О', '2018-11-01 12:44:54', '2018-11-01 12:44:54'),
-(9, 'плавильный участок', 'П', '2018-11-01 12:45:15', '2018-11-01 12:45:15'),
-(10, 'участок формовки', 'Ф', '2018-11-01 12:45:32', '2018-11-01 12:45:32');
+INSERT INTO `area` (`id`, `name`, `code`, `master`, `created_at`, `updated_at`) VALUES
+(8, 'участок обрубки и термообработки', 'О', NULL, '2018-11-01 12:44:54', '2018-11-01 12:44:54'),
+(9, 'плавильный участок', 'П', NULL, '2018-11-01 12:45:15', '2018-11-01 12:45:15'),
+(10, 'участок формовки', 'Ф', NULL, '2018-11-01 12:45:32', '2018-11-01 12:45:32');
 
 -- --------------------------------------------------------
 
