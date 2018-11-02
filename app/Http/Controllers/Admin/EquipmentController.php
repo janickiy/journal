@@ -62,7 +62,7 @@ class EquipmentController extends Controller
                 $status = 1;
             }
 
-            Equipment::create(array_merge($request->all(),['status' => $status]))->id;
+            Equipment::create(array_merge($request->all(),['status' => $status]));
 
             return redirect('admin/equipment/list')->with('success', 'Информация успешно добавлена');
         }

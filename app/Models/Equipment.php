@@ -16,6 +16,11 @@ class Equipment extends Model
         'area_id',
     ];
 
+    public function scopeStatus($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function area()
     {
         return $this->belongsTo(Area::class);

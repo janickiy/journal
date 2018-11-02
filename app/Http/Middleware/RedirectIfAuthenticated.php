@@ -18,7 +18,15 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('dashboard');
+
+            if (isset(Auth::user()->role->name) && Auth::user()->role->name == 'applicant')
+                $redirectTo = 'applicant';
+            else if(isset(Auth::user()->role->name) && Auth::user()->role->name == 'performer')
+                $redirectTo = 'performer';
+            else
+                $redirectTo = 'admin';
+
+            return redirect($redirectTo);
         }
 
         return $next($request);

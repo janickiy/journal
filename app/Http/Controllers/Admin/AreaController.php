@@ -46,7 +46,7 @@ class AreaController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
-            Area::create($request->all())->id;
+            Area::create($request->all());
 
             return redirect('admin/area/list')->with('success', 'Информация успешно добавлена');
         }

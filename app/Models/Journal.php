@@ -15,9 +15,9 @@ class Journal extends Model
         'equipment_id',
         'disrepair_description',
         'continues_used',
-        'manufacture_member',
+        'manufacture_member_id',
         'time_fixed',
-        'service_member',
+        'service_member_id',
         'work_comment',
         'worktypes_id',
         'master_comment',
@@ -38,5 +38,10 @@ class Journal extends Model
     public function worktypes()
     {
         return $this->belongsTo(WorkTypes::class);
+    }
+
+    public function servicemember()
+    {
+        return $this->belongsTo(\App\User::class,'service_member_id','id');
     }
 }

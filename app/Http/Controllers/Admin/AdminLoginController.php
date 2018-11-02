@@ -37,22 +37,20 @@ class AdminLoginController extends Controller
             'password' => 'required'
         ]);
 
-
         if ($validator->fails()) {
-            return redirect('dashboard')
+            return redirect('admin34')
                 ->withErrors($validator)
                 ->withInput();
         } else {
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 // Authentication passed...
-                return redirect()->intended('dashboard');
+                return redirect()->intended('admin');
             } else {
                 Session::flash('error', 'Вы не авторизованы !');
-                return redirect("dashboard");
+                return redirect("admin");
             }
         }
-
     }
 
     /**
@@ -65,7 +63,7 @@ class AdminLoginController extends Controller
         Auth::logout();
         \Session::flush();
 
-        return redirect('dashboard');
+        return redirect('admin');
     }
 
     /**
@@ -102,8 +100,7 @@ class AdminLoginController extends Controller
         Mail::send('auth.emails.password', ['data' => $data], function ($message) use ($data) {
 
             $message->from('us@example.com', 'Stock Manager');
-
-            $message->to($data['email'])->subject('Reset Password!');
+            $message->to($data['email'])->subject('Восстановление  пароля!');
 
         });
 
@@ -111,5 +108,4 @@ class AdminLoginController extends Controller
         return back()->withInput();
 
     }
-
 }

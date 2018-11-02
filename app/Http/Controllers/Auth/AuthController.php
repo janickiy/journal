@@ -35,6 +35,8 @@ class AuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
+
+     //   dd($authUser); exit;
         return redirect($this->redirectTo);
     }
 
@@ -47,7 +49,7 @@ class AuthController extends Controller
      */
     public function findOrCreateUser($user, $provider)
     {
-        //dd($user->avatar_original);exit;
+       //dd($user->id);exit;
         $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
