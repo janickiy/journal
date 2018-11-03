@@ -162,6 +162,9 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
+    /**
+     * @return mixed
+     */
     public function getJournal()
     {
         $journal = Journal::all();
@@ -170,5 +173,4 @@ class DataTableController extends Controller
 
            ->make(true);
     }
-
 }

@@ -95,6 +95,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::any('area', 'Admin\DataTableController@getArea')->name('admin.datatable.area')->middleware(['permission:admin']);
         Route::any('worktypes', 'Admin\DataTableController@getWorktypes')->name('admin.datatable.worktypes')->middleware(['permission:admin']);
         Route::any('settings', 'Admin\DataTableController@getSettings')->name('admin.datatable.settings')->middleware(['permission:admin']);
+
+        Route::any('journal', 'Admin\DataTableController@getJournal')->name('admin.datatable.journal')->middleware(['permission:admin']);
+
     });
 });
 
