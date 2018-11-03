@@ -19,10 +19,10 @@ class CreateJournalTable extends Migration
             $table->integer('area_id')->index('area_id');
             $table->integer('equipment_id')->index('equipment_id');
             $table->string('disrepair_description')->nullable();
-            $table->boolean('continues_used');
-            $table->string('manufacture_member');
-            $table->timestamp('time_fixed');
-            $table->string('service_member');
+            $table->boolean('continues_used')->nullable();
+            $table->integer('manufacture_member_id')->index('manufacture_member_id')->default(0);
+            $table->timestamp('time_fixed')->nullable();
+            $table->integer('service_member_id')->index('service_member_id');
             $table->string('work_comment')->nullable();
             $table->integer('worktypes_id');
             $table->text('master_comment')->nullable();

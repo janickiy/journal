@@ -1,4 +1,4 @@
-@extends('layouts.applicant')
+@extends('layouts.performer')
 
 @section('title', $title)
 
@@ -23,22 +23,15 @@
                 <!-- widget div-->
                 <div>
 
-
-                    <div class="box-header">
-                        <div class="row">
-                            <div class="col-md-12 padding-bottom-10">
-                                <a href="{{ URL::route('frontend.performer.applyform') }}"
-                                   class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Подать заявку</a>
-                            </div>
-                        </div>
-                    </div>
-
                     <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
                         <thead>
                         <tr>
-                            <th data-hide="phone"> Название</th>
-                            <th data-hide="phone"> Код</th>
-                            <th data-hide="phone"> ФИО мастера производства</th>
+                            <th data-hide="phone"> №</th>
+                            <th data-hide="phone"> Дата и врямя создания</th>
+                            <th data-hide="phone"> Участок</th>
+                            <th data-hide="phone"> Название оборудования</th>
+                            <th data-hide="phone"> Описание неисправности</th>
+                            <th data-hide="phone"> Комментарий мастера производства</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -68,11 +61,15 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: '{!! URL::route('admin.datatable.area') !!}',
+                ajax: '{!! URL::route('frontend.datatable.performer') !!}',
                 columns: [
-                    {data: 'name', name: 'name'},
-                    {data: 'code', name: 'code'},
-                    {data: 'master', name: 'master'},
+
+                    {data: 'id', name: 'id'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'area', name: 'area'},
+                    {data: 'equipment', name: 'equipment'},
+                    {data: 'disrepair_description', name: 'disrepair_description'},
+                    {data: 'master_comment', name: 'master_comment'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });
@@ -81,32 +78,32 @@
         // Delete start
         $(document).ready(function () {
 
-            $('#itemList').on('click', 'a.deleteRow', function () {
+            $('#itemList').on('click', 'a.fixRow', function () {
 
                 var btn = this;
                 var rowid = $(this).attr('id');
                 swal({
                         title: "Вы уверены?",
-                        text: "Вы не сможете восстановить эту информацию!",
+                        text: "Вы подверждаете, что неисправность устранена!",
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Да, удалить!",
+                        confirmButtonText: "Да, подтвердить!",
                         closeOnConfirm: false
                     },
                     function (isConfirm) {
                         if (!isConfirm) return;
                         $.ajax({
-                            url: SITE_URL + "/admin/area/delete/" + rowid,
-                            type: "DELETE",
+                            url: SITE_URL + "/performer/fix/" + rowid,
+                            type: "GET",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
                                 $("#rowid_" + rowid).remove();
-                                swal("Сделано!", "Данные успешно удаленны!", "success");
+                                swal("Сделано!", "Неисправность устранена!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                swal("Ошибка при удалении!", "Попробуйте еще раз", "error");
+                                swal("Ошибка веб приложения!", "Действия не были выполнены", "error");
                             }
                         });
                     });

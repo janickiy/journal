@@ -41,9 +41,10 @@
                             <th data-hide="phone"> Заявка</th>
                             <th data-hide="phone"> Оборудование</th>
                             <th data-hide="phone"> Участок</th>
-                            <th data-hide="phone"> Ответственного за ремонт</th>
-                            <th data-hide="phone"> Описанием проведенных работ</th>
+                            <th data-hide="phone"> Ответственный за ремонт</th>
+                            <th data-hide="phone"> Описание проведенных работ</th>
                             <th data-hide="phone"> Окончание работы</th>
+                            <th data-hide="phone"> Статус</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -83,6 +84,7 @@
                     {data: 'service_member', name: 'service_member'},
                     {data: 'work_comment', name: 'work_comment'},
                     {data: 'time_fixed', name: 'time_fixed'},
+                    {data: 'status', name: 'status'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });
@@ -107,7 +109,7 @@
                     function (isConfirm) {
                         if (!isConfirm) return;
                         $.ajax({
-                            url: SITE_URL + "/admin/applicant/cancel/" + rowid,
+                            url: SITE_URL + "/applicant/cancel/" + rowid,
                             type: "DELETE",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

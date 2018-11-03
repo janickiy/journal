@@ -36,7 +36,7 @@ class UserController extends Controller
         $role_options = [];
 
         foreach ($roles as $role) {
-            $role_options[$role->id] = $role->name;
+            $role_options[$role->id] = $role->display_name;
         }
 
         $areas = Area::get();
@@ -123,7 +123,7 @@ class UserController extends Controller
             $role_options = [];
 
             foreach ($roles as $role) {
-                $role_options[$role->id] = $role->name;
+                $role_options[$role->id] = $role->display_name;
             }
 
             $areas = Area::get();

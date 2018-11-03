@@ -153,4 +153,12 @@ class ApplicantController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     */
+    public function cancel(Request $request)
+    {
+        Journal::where('id', $request->id)->update(['status' => -1]);
+    }
+
 }

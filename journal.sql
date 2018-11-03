@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 02 2018 г., 16:07
--- Версия сервера: 10.1.34-MariaDB
--- Версия PHP: 7.2.7
+-- Время создания: Ноя 03 2018 г., 07:40
+-- Версия сервера: 10.1.36-MariaDB
+-- Версия PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,7 +100,7 @@ CREATE TABLE `journal` (
 --
 
 INSERT INTO `journal` (`id`, `less30min`, `area_id`, `equipment_id`, `disrepair_description`, `continues_used`, `manufacture_member_id`, `time_fixed`, `service_member_id`, `work_comment`, `worktypes_id`, `master_comment`, `service_comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 8, 1, 'Ничего не работает', NULL, 2, NULL, 1, 'kjgk hjk', 0, NULL, NULL, 0, '2018-11-02 11:15:23', '2018-11-02 11:15:23');
+(1, 0, 8, 1, 'Ничего не работает yy', NULL, 2, '2018-11-03 02:55:13', 1, 'kjgk hjk', 2, NULL, 'iui ip[o[o][', 1, '2018-11-02 11:15:23', '2018-11-03 03:36:22');
 
 -- --------------------------------------------------------
 
@@ -258,7 +258,8 @@ CREATE TABLE `role_user` (
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (1, 1),
 (2, 2),
-(2, 2);
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -313,7 +314,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `type`, `name`, `email`, `password`, `avatar`, `provider`, `provider_id`, `remember_token`, `notifyDetectedFault`, `notifyFaultFix`, `area_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 'admin', 'admin', 'admin@yandex.ru', '$2y$10$WkbOVND7enabohOUqXkHS.hIhiTSyHqxIr9cP6iE7gJo8hInCS6oi', NULL, NULL, NULL, 'ZjGmTNAEEUJYXPPUFErf1aKS4buzT52mof9DJC1kQzCiTbpO6FwRYh5UNVS7', 0, 1, NULL, '2018-10-20 21:13:57', '2018-11-01 13:31:53'),
-(2, 2, 'admin', 'user', 'user@yandex.ru', '$2y$10$VQyB2nyeIGCw4POMLc19Nej9n5Z7a4clu2aNVHnMwO3p3vrvk90rO', NULL, NULL, NULL, '0ykyPnhcFwBut8qtQIDMLsfYuU48fOWDgZZaBupQ1Zh5GxtaW7mJhWWS4snT', 1, 1, 8, '2018-11-02 05:33:52', '2018-11-02 10:47:16');
+(2, 2, 'admin', 'user', 'user@yandex.ru', '$2y$10$bMAjMR9wvGMDafkjNHEB5.mrZRe3NnPFWnk10q7LAIQiBcuL/5BsG', NULL, NULL, NULL, 'aVJLyMSJFdXI3TniCNLqvM7Uqnu7HOpdKfWj636uLMvuYZzHbQwMK2h01LCN', 1, 1, 9, '2018-11-02 05:33:52', '2018-11-03 00:35:45'),
+(3, 3, 'admin', 'yiuop', 'user2@yandex.ru', '$2y$10$0HPzzhuj/9Djsyfi5DYrUeSeHFODRiw08lwDomiEtYzYW5oI5i7Ca', NULL, NULL, NULL, NULL, 1, 1, NULL, '2018-11-03 00:35:30', '2018-11-03 00:35:30');
 
 -- --------------------------------------------------------
 
@@ -364,7 +366,9 @@ ALTER TABLE `journal`
   ADD PRIMARY KEY (`id`),
   ADD KEY `area_id` (`area_id`),
   ADD KEY `equipment_id` (`equipment_id`),
-  ADD KEY `worktypes_id` (`worktypes_id`);
+  ADD KEY `worktypes_id` (`worktypes_id`),
+  ADD KEY `manufacture_member_id` (`manufacture_member_id`),
+  ADD KEY `service_member_id` (`service_member_id`);
 
 --
 -- Индексы таблицы `migrations`
@@ -459,7 +463,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `worktypes`

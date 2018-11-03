@@ -100,15 +100,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'applicant', 'middleware' => ['auth']], function () {
     Route::get('','Frontend\ApplicantController@applications')->name('frontend.applicant.applications')->middleware(['permission:admin|applicant']);
-    Route::get('add_apply','Frontend\ApplicantController@applyForm')->name('frontend.applicant.applyform')->middleware(['permission:admin|applicant']);
-    Route::post('apply','Frontend\ApplicantController@apply')->name('frontend.applicant.apply')->middleware(['permission:admin|applicant']);
-    Route::get('edit_apply/{id}','Frontend\ApplicantController@editForm')->name('frontend.applicant.edit')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
+    Route::get('create','Frontend\ApplicantController@applyForm')->name('frontend.applicant.applyform')->middleware(['permission:admin|applicant']);
+    Route::post('store','Frontend\ApplicantController@apply')->name('frontend.applicant.apply')->middleware(['permission:admin|applicant']);
+    Route::get('edit/{id}','Frontend\ApplicantController@editForm')->name('frontend.applicant.edit')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
     Route::put('update','Frontend\ApplicantController@update')->name('frontend.applicant.update')->middleware(['permission:admin|applicant']);
+    Route::delete('cancel/{id}','Frontend\ApplicantController@cancel')->name('frontend.applicant.cancel')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
     Route::any('applications', 'Frontend\DataTableController@getApplications')->name('frontend.datatable.applications')->middleware(['permission:admin|applicant']);
 });
 
 Route::group(['prefix' => 'performer', 'middleware' => ['auth']], function () {
     Route::get('','Frontend\PerformerController@applications')->name('frontend.performer.applications')->middleware(['permission:admin|performer']);
+    Route::any('performer_applications', 'Frontend\DataTableController@getPerformerApplications')->name('frontend.datatable.performer')->middleware(['permission:admin|performer']);
+    Route::get('edit/{id}','Frontend\PerformerController@edit')->name('frontend.performer.edit')->middleware(['permission:admin|performer'])->where('id', '[0-9]+');
+    Route::put('update','Frontend\PerformerController@update')->name('frontend.performer.update')->middleware(['permission:admin|performer']);
+    Route::get('fix/{id}','Frontend\PerformerController@fix')->name('frontend.performer.fix')->middleware(['permission:admin|performer'])->where('id', '[0-9]+');
 });
 
 

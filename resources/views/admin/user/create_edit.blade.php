@@ -33,21 +33,6 @@
 
                             <div class="col-sm-6">
 
-                                {!! Form::text('name', old('name', isset($userData) ? $userData->name : null), ['class' => 'form-control', 'id' => 'name']) !!}
-
-                                @if ($errors->has('name'))
-                                    <p class="text-danger">{{ $errors->first('name') }}</p>
-                                @endif
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            {!! Form::label('name', 'Имя*', ['class' => 'col-sm-3 control-label']) !!}
-
-                            <div class="col-sm-6">
-
                                 {!! Form::text('name', old('name', isset($userData) ? $userData->name : null), ['class' => 'form-control', 'id' => 'login']) !!}
 
                                 @if ($errors->has('name'))
@@ -157,7 +142,6 @@
 
                             <div class="col-sm-6">
                                {!! Form::checkbox('notifyDetectedFault', 1, isset($userData) ? ($userData->notifyDetectedFault ? true : false) : false, ['class'=>'minimal']) !!}
-
                             </div>
                         </div>
 
@@ -167,7 +151,6 @@
 
                             <div class="col-sm-6">
                                 {!! Form::checkbox('notifyFaultFix', 1, isset($userData) ? ($userData->notifyFaultFix ? true : false) : false, ['class'=>'minimal']) !!}
-
                             </div>
                         </div>
 
