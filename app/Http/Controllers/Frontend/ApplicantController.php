@@ -56,7 +56,6 @@ class ApplicantController extends Controller
     public function apply(Request $request)
     {
         $rules = [
-            'area_id' => 'required|integer',
             'equipment_id' => 'required|integer',
             'disrepair_description' => 'required|max:255'
         ];
@@ -71,6 +70,7 @@ class ApplicantController extends Controller
             return back()->withErrors($validator)->withInput();
         } else {
 
+            $data['area_id'] = Auth::user()->area_id;
             $data['status'] = 0;
             $data['less30min'] = 0;
             $data['manufacture_member_id'] = Auth::user()->id;
@@ -128,7 +128,6 @@ class ApplicantController extends Controller
         if (!is_numeric($request->id)) abort(500);
 
         $rules = [
-            'area_id' => 'required|integer',
             'equipment_id' => 'required|integer',
             'disrepair_description' => 'required|max:255'
         ];
@@ -142,8 +141,6 @@ class ApplicantController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
-
-            $data['area_id'] = $request->area_id;
             $data['equipment_id'] = $request->equipment_id;
             $data['disrepair_description'] = $request->disrepair_description;
 
@@ -160,5 +157,4 @@ class ApplicantController extends Controller
     {
         Journal::where('id', $request->id)->update(['status' => -1]);
     }
-
 }

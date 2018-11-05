@@ -42,6 +42,11 @@ class Journal extends Model
 
     public function servicemember()
     {
-        return $this->belongsTo(\App\User::class,'service_member_id','id');
+        return $this->belongsTo(\App\User::class, 'service_member_id', 'id');
+    }
+
+    public function manufacturemember()
+    {
+        return $this->belongsTo(\App\User::class, 'manufacture_member_id', 'id');
     }
 }

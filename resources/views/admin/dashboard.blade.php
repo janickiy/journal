@@ -82,23 +82,28 @@
                             <th class="hasinput" >
 
                             </th>
+
+                            <th class="hasinput" >
+
+                            </th>
                         </tr>
 
                         <tr>
-                            <th data-hide="phone"> №</th>
-                            <th data-hide="phone"> Неисправность<br>обнаружена</th>
-                            <th data-hide="phone"> Меньше 30 мин.</th>
-                            <th data-hide="phone"> Участок</th>
-                            <th data-hide="phone"> Оборудование</th>
-                            <th data-hide="phone"> Описание неисправности</th>
-                            <th data-hide="phone"> Оборудование продолжает работать</th>
-                            <th data-hide="phone"> Представитель производства</th>
-                            <th data-hide="phone"> Неисправность устранена</th>
-                            <th data-hide="phone"> Представитель СГМ или СГЭ</th>
-                            <th data-hide="phone"> Выполненные работы</th>
-                            <th data-hide="phone"> Тип работы</th>
-                            <th data-hide="phone"> Комментарии мастера</th>
-                            <th data-hide="phone"> Комментарии специалиста<br>СГМ ил и СГЭ</th>
+                            <th data-hide="phone">№</th>
+                            <th data-hide="phone">Неисправность<br>обнаружена</th>
+                            <th data-hide="phone">Меньше 30 мин.</th>
+                            <th data-hide="phone">Участок</th>
+                            <th data-hide="phone">Оборудование</th>
+                            <th data-hide="phone">Описание неисправности</th>
+                            <th data-hide="phone">Оборудование продолжает работать</th>
+                            <th data-hide="phone">Представитель производства</th>
+                            <th data-hide="phone">Неисправность устранена</th>
+                            <th data-hide="phone">Представитель СГМ или СГЭ</th>
+                            <th data-hide="phone">Выполненные работы</th>
+                            <th data-hide="phone">Тип работы</th>
+                            <th data-hide="phone">Комментарии мастера</th>
+                            <th data-hide="phone">Комментарии специалиста<br>СГМ ил и СГЭ</th>
+                            <th data-hide="phone">Статус</th>
                         </tr>
 
                         </thead>
@@ -275,13 +280,14 @@
                     {data: 'equipment', name: 'equipment'},
                     {data: 'disrepair_description', name: 'disrepair_description'},
                     {data: 'continues_used', name: 'continues_used'},
-                    {data: 'manufacture_member', name: 'manufacture_member'},
+                    {data: 'manufacturemember', name: 'manufacturemember'},
                     {data: 'time_fixed', name: 'time_fixed'},
-                    {data: 'service_member', name: 'service_member'},
+                    {data: 'servicemember', name: 'servicemember'},
                     {data: 'work_comment', name: 'work_comment'},
                     {data: 'worktypes', name: 'worktypes'},
                     {data: 'master_comment', name: 'master_comment'},
                     {data: 'service_comment', name: 'service_comment'},
+                    {data: 'status', name: 'status'},
                 ],
             });
 

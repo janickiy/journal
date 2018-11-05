@@ -171,6 +171,38 @@ class DataTableController extends Controller
 
         return Datatables::of($journal)
 
+            ->editColumn('less30min', function ($journal) {
+                return $journal->less30min == 1 ? 'да' : 'нет';
+            })
+
+            ->editColumn('area', function ($journal) {
+                return isset($journal->area->code) ? $journal->area->code : '';
+            })
+
+            ->editColumn('equipment', function ($journal) {
+                return $journal->equipment->name;
+            })
+
+            ->editColumn('continues_used', function ($journal) {
+                return $journal->continues_used == 1 ? 'да' : 'нет';
+            })
+
+            ->editColumn('manufacturemember', function ($journal) {
+                return isset($journal->manufacturemember->name) ? $journal->manufacturemember->name : '';
+            })
+
+            ->editColumn('servicemember', function ($journal) {
+                return isset($journal->servicemember->name) ? $journal->servicemember->name : '';
+            })
+
+            ->editColumn('worktypes', function ($journal) {
+                return isset($journal->worktypes->code) ? $journal->worktypes->code : '';
+            })
+
+            ->editColumn('status', function ($journal) {
+                return appStatus($journal->status);
+            })
+
            ->make(true);
     }
 }

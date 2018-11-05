@@ -40,21 +40,6 @@
 
                     <div class="form-group">
 
-                        {!! Form::label('area_id', 'Производственный участок*', ['class' => 'col-sm-3 control-label']) !!}
-
-                        <div class="col-sm-6">
-
-                            {!! Form::select('area_id', $area_options, old('area_id', isset($journal) ? $journal->area_id : null), ['placeholder' => 'Выберите', 'class' => 'form-control']) !!}
-
-                            @if ($errors->has('area_id'))
-                                <span class="text-danger">{{ $errors->first('area_id') }}</span>
-                            @endif
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
                         {!! Form::label('equipment_id', 'Оборудование*', ['class' => 'col-sm-3 control-label']) !!}
 
                         <div class="col-sm-6">
