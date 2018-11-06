@@ -10,6 +10,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\Area;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
@@ -150,6 +151,20 @@ class ApplicantController extends Controller
             }
 
             Journal::where('id', $request->id)->update($data);
+
+            $users = User::select('users.*')
+                ->join('role','role.id','=','users.role_id')
+                ->where('users.area_id',Auth::user()->area_id)
+                ->where('users.notifyDetectedFault',1)
+                ->where('role.name','=','applicant')
+                ->get();
+
+            $equipment = Equipment::where('id',$request->equipment_id)->first();
+
+            foreach ($users as $user) {
+                $msg = 'Поступида заявка на ремонт ' . $equipment->name . $request->disrepair_description . '';
+                sendSMS($user->phone,$msg);
+            }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
         }

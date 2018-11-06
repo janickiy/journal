@@ -72,7 +72,7 @@ class PerformerController extends Controller
 
             Journal::where('id', $request->id)->update($data);
 
-            return redirect('performer')->with('success', 'Заявка обнавлена');
+            return redirect('performer')->with('success', 'Заявка обновлена');
         }
     }
 
@@ -81,6 +81,16 @@ class PerformerController extends Controller
      */
     public function fix(Request $request)
     {
-        Journal::where('id', $request->id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
+        $journal = Journal::where('id',$request->id)->first();
+
+        if ($journal) {
+            Journal::where('id', $request->id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
+
+            $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' готово к работе';
+
+            if ($journal->manufacturemember->notifyFaultFix) sendSMS($journal->manufacturemember->phone,$msg);
+        }
+
+        abort(404);
     }
 }

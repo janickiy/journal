@@ -37,7 +37,8 @@
         },
         "files": [
             "app/Helpers/TextHelper.php",
-            "app/Helpers/SettingsHelper.php"
+            "app/Helpers/SettingsHelper.php",
+            "app/Helpers/SmsHelper.php"
         ]
     },
     "autoload-dev": {
