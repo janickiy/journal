@@ -153,10 +153,10 @@ class ApplicantController extends Controller
             Journal::where('id', $request->id)->update($data);
 
             $users = User::select('users.*')
-                ->join('role','role.id','=','users.role_id')
+                ->join('roles','roles.id','=','users.role_id')
                 ->where('users.area_id',Auth::user()->area_id)
                 ->where('users.notifyDetectedFault',1)
-                ->where('role.name','=','applicant')
+                ->where('roles.name','=','applicant')
                 ->get();
 
             $equipment = Equipment::where('id',$request->equipment_id)->first();
