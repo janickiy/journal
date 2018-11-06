@@ -1,10 +1,10 @@
 @extends('layouts.applicant')
 
-@section('title', isset($equipment) ? 'Редактирование заявки' : 'Добавление заявки' )
+@section('title', isset($journal) ? 'Редактирование заявки' : 'Добавление заявки' )
 
 @section('content')
 
-    <h2>{!! isset($equipment) ? 'Редактирование' : 'Добавление' !!} заявки</h2>
+    <h2>{!! isset($journal) ? 'Редактирование' : 'Добавление' !!} заявки</h2>
 
     <div class="row-fluid">
 
@@ -49,6 +49,17 @@
                             @if ($errors->has('equipment_id'))
                                 <span class="text-danger">{{ $errors->first('equipment_id') }}</span>
                             @endif
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        {!! Form::label('continues_used', 'Оборудование продолжает использоваться', ['class' => 'col-sm-3 control-label']) !!}
+
+                        <div class="col-sm-6">
+
+                            {!! Form::checkbox('continues_used', 1, isset($journal) ? ($journal->continues_used ? true : false) : true, ['class'=>'minimal']) !!}
 
                         </div>
                     </div>

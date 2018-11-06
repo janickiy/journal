@@ -143,11 +143,41 @@ class ApplicantController extends Controller
         } else {
             $data['equipment_id'] = $request->equipment_id;
             $data['disrepair_description'] = $request->disrepair_description;
+            $data['continues_used'] = 0;
+
+            if ($request->continues_used) {
+                $data['continues_used'] = 1;
+            }
 
             Journal::where('id', $request->id)->update($data);
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function accept(Request $request)
+    {
+        $journal = Journal::where('id', $request->id)->first();
+
+        if ( $journal) {
+            if (diff_d($journal->created_at, date('Y-m-d H:i:s')) > 30)
+                $data['less30min'] = 0;
+            else
+                $data['less30min'] = 1;
+
+            $data['status'] = 2;
+
+            Journal::where('id', $request->id)->update($data);
+
+            return redirect('applicant')->with('success', 'Оборудование принято');
+        }
+
+        abort(404);
+
     }
 
     /**

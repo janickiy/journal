@@ -12,6 +12,10 @@ function appStatus($status)
             break;
 
         case 1:
+            return 'неисправность устранена';
+            break;
+
+        case 2:
             return 'завершена';
             break;
 
@@ -355,4 +359,18 @@ function str_to_utf8($string)
         $string = @iconv("windows-1251", "utf-8", $string);
     }
     return $string;
+}
+
+/**
+ * @param $date1
+ * @param $data2
+ * @return int
+ */
+function diff_d($date1, $data2) {
+    if ($date1 && $data2) {
+        $date1 = strtotime($date1);
+        $date2 = strtotime($data2);
+        $diff = ABS($date1 - $date2);
+        return intval($diff / 60);
+    }
 }

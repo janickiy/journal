@@ -61,9 +61,9 @@
                 },
                 processing: true,
                 serverSide: true,
+                "order": [[ 0, "desc" ]],
                 ajax: '{!! URL::route('frontend.datatable.performer') !!}',
                 columns: [
-
                     {data: 'id', name: 'id'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'area', name: 'area'},
@@ -99,7 +99,7 @@
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#rowid_" + rowid).remove();
+                                $("#" + rowid).html('<a title="Редактировать" class="btn btn-xs btn-primary"  href="' + SITE_URL + '/performer/edit/' + rowid + '"><span  class="fa fa-edit"></span></a>');
                                 swal("Сделано!", "Неисправность устранена!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

@@ -71,6 +71,7 @@
                             {!! Form::label('status', 'Активна', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">
+
                                 {!! Form::checkbox('status', 1, isset($equipment) ? ($equipment->status ? true : false) : true, ['class'=>'minimal']) !!}
 
                             </div>

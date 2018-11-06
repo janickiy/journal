@@ -95,7 +95,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::any('area', 'Admin\DataTableController@getArea')->name('admin.datatable.area')->middleware(['permission:admin']);
         Route::any('worktypes', 'Admin\DataTableController@getWorktypes')->name('admin.datatable.worktypes')->middleware(['permission:admin']);
         Route::any('settings', 'Admin\DataTableController@getSettings')->name('admin.datatable.settings')->middleware(['permission:admin']);
-
         Route::any('journal', 'Admin\DataTableController@getJournal')->name('admin.datatable.journal')->middleware(['permission:admin']);
 
     });
@@ -108,6 +107,7 @@ Route::group(['prefix' => 'applicant', 'middleware' => ['auth']], function () {
     Route::get('edit/{id}','Frontend\ApplicantController@editForm')->name('frontend.applicant.edit')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
     Route::put('update','Frontend\ApplicantController@update')->name('frontend.applicant.update')->middleware(['permission:admin|applicant']);
     Route::delete('cancel/{id}','Frontend\ApplicantController@cancel')->name('frontend.applicant.cancel')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
+    Route::get('accept/{id}','Frontend\ApplicantController@accept')->name('frontend.applicant.accept')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
     Route::any('applications', 'Frontend\DataTableController@getApplications')->name('frontend.datatable.applications')->middleware(['permission:admin|applicant']);
 });
 

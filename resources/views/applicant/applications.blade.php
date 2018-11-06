@@ -74,6 +74,7 @@
                 },
                 processing: true,
                 serverSide: true,
+                "order": [[ 0, "desc" ]],
                 ajax: '{!! URL::route('frontend.datatable.applications') !!}',
                 columns: [
                     {data: 'id', name: 'id'},

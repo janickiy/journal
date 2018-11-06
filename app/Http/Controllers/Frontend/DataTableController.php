@@ -40,10 +40,20 @@ class DataTableController extends Controller
                 return appStatus($applications->status);
             })
             ->addColumn('actions', function ($applications) {
-                $editBtn = '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.edit', ['id' => $applications->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;';
-                $deleteBtn = '<a title="Отменить" class="btn btn-xs btn-danger deleteRow" id="' . $applications->id . '"><span class="fa fa-times-circle"></span></a>';
 
-                return (empty($applications->time_fixed) && $applications->status == 0) ? $editBtn . $deleteBtn : '';
+                $editBtn = '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.edit', ['id' => $applications->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;';
+
+                if (diff_d($applications->created_at, date('Y-m-d H:i:s')) < 10) {
+                    $deleteBtn = '<a title="Отменить" class="btn btn-xs btn-danger deleteRow" id="' . $applications->id . '"><span class="fa fa-times-circle"></span></a>';
+                } else {
+                    $deleteBtn = '';
+                }
+
+                if ($applications->status == 1)  {
+                    return '<a title="Оборудование принял" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.accept', ['id' => $applications->id]) . '"><span  class="fa fa-check"></span></a>';
+                } else {
+                    return (empty($applications->time_fixed) && $applications->status == 0) ? $editBtn . $deleteBtn : '';
+                }
             })
             ->rawColumns(['actions'])->make(true);
     }

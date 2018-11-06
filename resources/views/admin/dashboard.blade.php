@@ -252,6 +252,7 @@
                'createdRow': function( row, data, dataIndex ) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },
+                "order": [[ 0, "desc" ]],
                 processing: true,
                 serverSide: true,
                 ajax: {
