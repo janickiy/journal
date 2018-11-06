@@ -296,6 +296,8 @@
                     {
                         extend: 'csv',
                         text: 'Экспортировать в csv',
+                        charset: 'UTF-8',
+                        bom: true,
                         className: 'exportExcel',
                         filename: 'Журнал простоев оборудования',
                         exportOptions: {

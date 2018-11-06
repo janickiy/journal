@@ -87,17 +87,6 @@ class DataTableController extends Controller
             ->rawColumns(['actions'])->make(true);
     }
 
-    public function html()
-    {
-        return $this->builder()
-            ->columns($this->getColumns())
-            ->ajax('')
-            ->addAction(['width' => '80px'])
-            ->parameters([
-                'buttons'      => ['export', 'print', 'reset', 'reload'],
-            ]);
-    }
-
     /**
      * @return mixed
      */
@@ -197,7 +186,7 @@ class DataTableController extends Controller
             $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
             $journal = Journal::whereBetween('time_fixed', [$start2, $end2]);
         } else {
-            $journal = Journal::all();
+            $journal = Journal::select('*');
         }
 
         return Datatables::of($journal)
