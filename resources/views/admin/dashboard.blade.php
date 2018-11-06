@@ -4,6 +4,15 @@
 
 @section('css')
 
+    <style>
+        .exportExcel{
+            padding: 5px;
+            border: 1px solid grey;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+
 @endsection
 
 @section('content')
@@ -32,7 +41,7 @@
                             </th>
 
                             <th class="hasinput  FilterinputSearc" >
-                                <input id="reportrange2" type="text" placeholder="Фильтр Date" class="form-control" data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
+                                <input id="reportrange" type="text" placeholder="Фильтр Date" class="form-control" data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
                                 </th>
 
                             <th class="hasinput" >
@@ -239,26 +248,8 @@
             });
 
             var otable = $('#datatable_fixed_column').DataTable({
-                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-                    "t" +
-                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-                "autoWidth": true,
-                "oLanguage": {
-                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-                },
-                "preDrawCallback": function () {
-                    // Initialize the responsive datatables helper once.
-                    if (!responsiveHelper_dt_basic) {
-                        responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
-                    }
-                },
-                "rowCallback": function (nRow) {
-                    responsiveHelper_dt_basic.createExpandIcon(nRow);
-                },
-                "drawCallback": function (oSettings) {
-                    responsiveHelper_dt_basic.respond();
-                },
-                'createdRow': function (row, data, dataIndex) {
+
+               'createdRow': function( row, data, dataIndex ) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },
                 processing: true,
@@ -289,6 +280,42 @@
                     {data: 'service_comment', name: 'service_comment'},
                     {data: 'status', name: 'status'},
                 ],
+                dom: 'Blfrtip',
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Экспортировать в excel',
+                        className: 'exportExcel',
+                        filename: 'Журнал простоев оборудования',
+                        exportOptions: {
+                            modifier: {
+                                page: 'all'
+                            }
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'Экспортировать в csv',
+                        className: 'exportExcel',
+                        filename: 'Журнал простоев оборудования',
+                        exportOptions: {
+                            modifier: {
+                                page: 'all'
+                            }
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'Экспортировать в pdf',
+                        className: 'exportExcel',
+                        filename: 'Журнал простоев оборудования',
+                        exportOptions: {
+                            modifier: {
+                                page: 'all'
+                            }
+                        }
+                    },
+                    ]
             });
 
             /* END BASIC */

@@ -186,6 +186,9 @@ return [
       //  Maatwebsite\Excel\ExcelServiceProvider::class,
         Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
 
+        Yajra\DataTables\ButtonsServiceProvider::class,
+        Yajra\DataTables\HtmlServiceProvider::class,
+
     ],
 
     /*

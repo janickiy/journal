@@ -59,6 +59,21 @@
 
                         <div class="form-group">
 
+                            {!! Form::label('phone', 'Телефон', ['class' => 'col-sm-3 control-label']) !!}
+
+                            <div class="col-sm-6">
+
+                                {!! Form::email('phone', old('phone', isset($userData) ? $userData->phone : null), ['class' => 'form-control', 'id'=>'phone']) !!}
+
+                                @if ($errors->has('phone'))
+                                    <p class="text-danger">{{ $errors->first('phone') }}</p>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
                             {!! Form::label('password', isset($userData) ? 'Пароль' : 'Пароль*', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">

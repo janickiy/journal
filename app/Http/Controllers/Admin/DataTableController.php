@@ -15,6 +15,7 @@ use App\Models\Journal;
 use App\Http\Start\Helpers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use URL;
 
 class DataTableController extends Controller
@@ -84,6 +85,17 @@ class DataTableController extends Controller
             })
 
             ->rawColumns(['actions'])->make(true);
+    }
+
+    public function html()
+    {
+        return $this->builder()
+            ->columns($this->getColumns())
+            ->ajax('')
+            ->addAction(['width' => '80px'])
+            ->parameters([
+                'buttons'      => ['export', 'print', 'reset', 'reload'],
+            ]);
     }
 
     /**
@@ -165,9 +177,28 @@ class DataTableController extends Controller
     /**
      * @return mixed
      */
-    public function getJournal()
+    public function getJournal(Request $request)
     {
-        $journal = Journal::all();
+        $dates = explode(' - ', $request->date);
+        $dates2 = explode(' - ', $request->date2);
+
+        if (array_key_exists(0, $dates) && array_key_exists(1, $dates)) {
+            $start = Carbon::parse($dates[0])->format('Y-m-d H:i:s');
+            $end = Carbon::parse($dates[1])->format('Y-m-d H:i:s');
+            $journal = Journal::whereBetween('created_at', [$start, $end]);
+        } else if (array_key_exists(0, $dates) && array_key_exists(1, $dates) and array_key_exists(0, $dates2) && array_key_exists(1, $dates2)) {
+            $start = Carbon::parse($dates[0])->format('Y-m-d H:i:s');
+            $end = Carbon::parse($dates[1])->format('Y-m-d H:i:s');
+            $start2 = Carbon::parse($dates2[0])->format('Y-m-d H:i:s');
+            $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
+            $journal = Journal::whereBetween('created_at', [$start, $end])->whereBetween('time_fixed', [$start2, $end2]);
+        } else if(array_key_exists(0, $dates2) && array_key_exists(1, $dates2)) {
+            $start2 = Carbon::parse($dates2[0])->format('Y-m-d H:i:s');
+            $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
+            $journal = Journal::whereBetween('time_fixed', [$start2, $end2]);
+        } else {
+            $journal = Journal::all();
+        }
 
         return Datatables::of($journal)
 

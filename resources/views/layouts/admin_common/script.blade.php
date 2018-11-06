@@ -93,6 +93,18 @@
 
 {!! Html::script('js/plugin/jquery-treeview-master/jquery.treeview.js') !!}
 
+{!! Html::script('js/plugin/datatables/Buttons-1.5.4/js/dataTables.buttons.min.js') !!}
+
+{!! Html::script('js/plugin/datatables/Buttons-1.5.4/js/buttons.bootstrap.min.js') !!}
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js'></script>
+
+{!! Html::script('js/plugin/datatables/Buttons-1.5.4/js/buttons.html5.min.js') !!}
+
+{!! Html::script('js/plugin/datatables/Buttons-1.5.4/js/buttons.print.min.js') !!}
+
 
 <!-- PAGE RELATED PLUGIN(S)
 <script src="..."></script>-->

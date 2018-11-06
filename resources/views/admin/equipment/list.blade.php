@@ -4,11 +4,19 @@
 
 @section('css')
 
+
+    <style>
+        .exportExcel{
+            padding: 5px;
+            border: 1px solid grey;
+            margin: 5px;
+            cursor: pointer;
+        }
+        </style>
 @endsection
 
 
 @section('content')
-
 
     <h2>{{ $title }}</h2>
 
@@ -62,7 +70,10 @@
 @endsection
 
 @section('js')
+
+
     <script type="text/javascript">
+
         $(document).ready(function () {
             var table = $("#itemList").DataTable({
                 'createdRow': function( row, data, dataIndex ) {
@@ -77,7 +88,7 @@
                     {data: 'area', name: 'area'},
                     {data: 'status', name: 'status'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
-                ],
+                ]
             });
         });
 
