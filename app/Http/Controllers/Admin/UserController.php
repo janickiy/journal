@@ -9,7 +9,7 @@ use Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Start\Helpers;
-use App\User;
+use App\Models\User;
 use App\Models\{Role, RoleUser, Area};
 use App\Http\Controllers\Controller;
 

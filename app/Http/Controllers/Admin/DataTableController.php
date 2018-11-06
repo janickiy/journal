@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Http\Requests;
-use App\User;
+use App\Models\User;
 use App\Models\Role;
 use App\Models\Settings;
 use App\Models\Equipment;
@@ -186,7 +186,8 @@ class DataTableController extends Controller
             $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
             $journal = Journal::whereBetween('time_fixed', [$start2, $end2]);
         } else {
-            $journal = Journal::select('*');
+           // $journal = Journal::select('*');
+            $journal = Journal::with('area', 'equipment', 'worktypes', 'users', 'manufacturemember', 'servicemember');
         }
 
         return Datatables::of($journal)
@@ -195,11 +196,11 @@ class DataTableController extends Controller
                 return $journal->less30min == 1 ? 'да' : 'нет';
             })
 
-            ->editColumn('area', function ($journal) {
+            ->editColumn('area.code', function ($journal) {
                 return isset($journal->area->code) ? $journal->area->code : '';
             })
 
-            ->editColumn('equipment', function ($journal) {
+            ->editColumn('equipment.name', function ($journal) {
                 return $journal->equipment->name;
             })
 
@@ -207,15 +208,15 @@ class DataTableController extends Controller
                 return $journal->continues_used == 1 ? 'да' : 'нет';
             })
 
-            ->editColumn('manufacturemember', function ($journal) {
+            ->editColumn('manufacturemember.name', function ($journal) {
                 return isset($journal->manufacturemember->name) ? $journal->manufacturemember->name : '';
             })
 
-            ->editColumn('servicemember', function ($journal) {
+            ->editColumn('servicemember.name', function ($journal) {
                 return isset($journal->servicemember->name) ? $journal->servicemember->name : '';
             })
 
-            ->editColumn('worktypes', function ($journal) {
+            ->editColumn('worktypes.code', function ($journal) {
                 return isset($journal->worktypes->code) ? $journal->worktypes->code : '';
             })
 

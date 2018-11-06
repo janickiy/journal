@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Start\Helpers;
 use App\Models\Journal;
-use App\Models\Worktypes;
+use App\Models\WorkTypes;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Validator;
@@ -28,7 +28,7 @@ class PerformerController extends Controller
         $application = Journal::where('id',$id)->first();
 
         if ($application) {
-            $worktypes = Worktypes::get();
+            $worktypes = WorkTypes::get();
             $options = [];
 
             foreach($worktypes as $worktype) {
