@@ -54,7 +54,7 @@ class DataTableController extends Controller
             })
 
             ->addColumn('role', function ($users) {
-                return isset($users->role->name) && $users->role->name ? $users->role->name : '';
+                return isset($users->role->display_name) && $users->role->display_name ? $users->role->display_name : '';
             })
 
             ->rawColumns(['actions'])->make(true);

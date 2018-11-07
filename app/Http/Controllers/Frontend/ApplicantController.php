@@ -20,6 +20,7 @@ class ApplicantController extends Controller
      */
     public function applications()
     {
+
         return view('applicant.applications')->with('title', 'Мои заявки');
     }
 
@@ -77,6 +78,20 @@ class ApplicantController extends Controller
             $data['manufacture_member_id'] = Auth::user()->id;
 
             Journal::create(array_merge($request->all(),$data));
+
+            $users = User::select('users.*')
+                ->join('roles','roles.id','=','users.role_id')
+                //  ->where('users.area_id',Auth::user()->area_id)
+                ->where('users.notifyDetectedFault',1)
+                ->where('roles.name','=','performer')
+                ->get();
+
+            $equipment = Equipment::where('id',$request->equipment_id)->first();
+
+            foreach ($users as $user) {
+                $msg = 'Поступида заявка на ремонт ' . $equipment->name . $request->disrepair_description . '';
+                sendSMS($user->phone,$msg);
+            }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
         }
@@ -151,20 +166,6 @@ class ApplicantController extends Controller
             }
 
             Journal::where('id', $request->id)->update($data);
-
-            $users = User::select('users.*')
-                ->join('roles','roles.id','=','users.role_id')
-                ->where('users.area_id',Auth::user()->area_id)
-                ->where('users.notifyDetectedFault',1)
-                ->where('roles.name','=','applicant')
-                ->get();
-
-            $equipment = Equipment::where('id',$request->equipment_id)->first();
-
-            foreach ($users as $user) {
-                $msg = 'Поступида заявка на ремонт ' . $equipment->name . $request->disrepair_description . '';
-                sendSMS($user->phone,$msg);
-            }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
         }
