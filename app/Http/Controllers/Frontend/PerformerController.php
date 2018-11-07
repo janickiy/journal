@@ -25,17 +25,17 @@ class PerformerController extends Controller
      */
     public function edit($id)
     {
-        $application = Journal::where('id',$id)->first();
+        $application = Journal::where('id', $id)->first();
 
         if ($application) {
             $worktypes = WorkTypes::get();
             $options = [];
 
-            foreach($worktypes as $worktype) {
+            foreach ($worktypes as $worktype) {
                 $options[$worktype->id] = $worktype->name;
             }
 
-            return view('performer.edit', compact('application','options'));
+            return view('performer.edit', compact('application', 'options'));
         }
 
         abort(404);
@@ -48,6 +48,10 @@ class PerformerController extends Controller
     public function update(Request $request)
     {
         if (!is_numeric($request->id)) abort(500);
+
+        $journal = Journal::where('id', $request->id)->first();
+
+        if (!$journal) abort(404);
 
         $rules = [
             'work_comment' => 'required|max:255',
@@ -72,6 +76,12 @@ class PerformerController extends Controller
 
             Journal::where('id', $request->id)->update($data);
 
+            $journal = Journal::where('id', $request->id)->first();
+
+            $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' готово к работе';
+
+            if ($journal->manufacturemember->notifyFaultFix) sendSMS($journal->manufacturemember->phone, $msg);
+
             return redirect('performer')->with('success', 'Заявка обновлена');
         }
     }
@@ -82,15 +92,6 @@ class PerformerController extends Controller
      */
     public function fix($id)
     {
-        $journal = Journal::where('id',$id)->first();
-
-        if ($journal) {
-            $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' готово к работе';
-
-            if ($journal->manufacturemember->notifyFaultFix) sendSMS($journal->manufacturemember->phone,$msg);
-
-            return Journal::where('id', $id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
-
-        }
+        return Journal::where('id', $id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
     }
 }
