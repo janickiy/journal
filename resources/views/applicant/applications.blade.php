@@ -124,6 +124,42 @@
                         });
                     });
             });
+
+            $('#itemList').on('click', 'a.acceptRow', function () {
+
+                var btn = this;
+                var rowid = $(this).attr('id');
+                swal({
+                        html: true,
+                        title: "Принять оборудование?",
+                        text:
+                            '<textarea rows="3" cols="45" id="comment" placeholder="Ваш комментарий" name="comment" ></textarea>',
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Да, принять!",
+                        closeOnConfirm: false
+                    },
+                    function (isConfirm) {
+                        if (!isConfirm) return;
+                        $.ajax({
+                            url: SITE_URL + "/applicant/accept",
+                            data: { id: rowid, comment : $('#comment').val() },
+                            type: "POST",
+                            dataType: "html",
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            success: function () {
+                                $("#rowid_" + rowid).remove();
+                                swal("Сделано!", "Оборудование принято!", "success");
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                swal("Действия не были выполнены!", "Попробуйте еще раз", "error");
+                            }
+                        });
+                    });
+            });
+
+
         });
         // Delete End
     </script>

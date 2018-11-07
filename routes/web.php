@@ -107,7 +107,7 @@ Route::group(['prefix' => 'applicant', 'middleware' => ['auth']], function () {
     Route::get('edit/{id}','Frontend\ApplicantController@editForm')->name('frontend.applicant.edit')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
     Route::put('update','Frontend\ApplicantController@update')->name('frontend.applicant.update')->middleware(['permission:admin|applicant']);
     Route::delete('cancel/{id}','Frontend\ApplicantController@cancel')->name('frontend.applicant.cancel')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
-    Route::get('accept/{id}','Frontend\ApplicantController@accept')->name('frontend.applicant.accept')->middleware(['permission:admin|applicant'])->where('id', '[0-9]+');
+    Route::post('accept','Frontend\ApplicantController@accept')->name('frontend.applicant.accept')->middleware(['permission:admin|applicant']);
     Route::any('applications', 'Frontend\DataTableController@getApplications')->name('frontend.datatable.applications')->middleware(['permission:admin|applicant']);
 });
 

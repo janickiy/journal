@@ -185,6 +185,7 @@ class ApplicantController extends Controller
                 $data['less30min'] = 1;
 
             $data['status'] = 2;
+            $data['master_comment'] = $request->comment;
 
             Journal::where('id', $request->id)->update($data);
 

@@ -50,7 +50,10 @@ class DataTableController extends Controller
                 }
 
                 if ($applications->status == 1)  {
-                    return '<a title="Оборудование принял" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.accept', ['id' => $applications->id]) . '"><span  class="fa fa-check"></span></a>';
+                    //return '<a title="Оборудование принял" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.accept', ['id' => $applications->id]) . '"><span  class="fa fa-check"></span></a>';
+
+                    return '<a title="Оборудование принял" class="btn btn-xs btn-primary acceptRow" id="' . $applications->id . '"><span  class="fa fa-check"></span></a>';
+
                 } else {
                     return (empty($applications->time_fixed) && $applications->status == 0) ? $editBtn . $deleteBtn : '';
                 }
