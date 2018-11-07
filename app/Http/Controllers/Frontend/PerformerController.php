@@ -77,20 +77,20 @@ class PerformerController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param $id
+     * @return mixed
      */
-    public function fix(Request $request)
+    public function fix($id)
     {
-        $journal = Journal::where('id',$request->id)->first();
+        $journal = Journal::where('id',$id)->first();
 
         if ($journal) {
-            Journal::where('id', $request->id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
-
             $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' готово к работе';
 
             if ($journal->manufacturemember->notifyFaultFix) sendSMS($journal->manufacturemember->phone,$msg);
-        }
 
-        abort(404);
+            return Journal::where('id', $id)->update(['service_member_id' => Auth::user()->id, 'time_fixed' => Carbon::now()]);
+
+        }
     }
 }

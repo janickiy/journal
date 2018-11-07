@@ -31,7 +31,6 @@
                             <th data-hide="phone"> Участок</th>
                             <th data-hide="phone"> Название оборудования</th>
                             <th data-hide="phone"> Описание неисправности</th>
-                            <th data-hide="phone"> Комментарий мастера производства</th>
                             <th data-hide="phone,tablet"> Действия</th>
                         </tr>
                         </thead>
@@ -69,7 +68,6 @@
                     {data: 'area', name: 'area'},
                     {data: 'equipment', name: 'equipment'},
                     {data: 'disrepair_description', name: 'disrepair_description'},
-                    {data: 'master_comment', name: 'master_comment'},
                     {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
             });

@@ -60,6 +60,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
+            'phone' => 'numeric|nullable',
             'password' => 'min:3|required',
             'password_confirmation' => 'min:3|same:password',
             'role_id' => 'required',
@@ -152,6 +153,7 @@ class UserController extends Controller
         // dd($id);exit;
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
+            'phone' => 'numeric|nullable',
             'role_id' => 'required',
             'password' => 'min:6|nullable',
             'password_confirmation' => 'min:6|same:password|nullable',
@@ -165,6 +167,7 @@ class UserController extends Controller
         } else {
 
             $data['name'] = $request->name;
+            $data['phone'] = $request->phone;
             $data['role_id'] = $request->role_id;
             $data['area_id'] = $request->area_id;
             $data['notifyDetectedFault'] = 0;

@@ -42,7 +42,7 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'area_id' => 'required|integer'
+            'area_id' => 'required|numeric'
         ];
 
 
@@ -101,7 +101,7 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'area_id' => 'required|integer'
+            'area_id' => 'required|numeric'
         ];
 
         $message = [

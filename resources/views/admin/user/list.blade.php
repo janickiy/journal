@@ -39,6 +39,7 @@
                             <th data-hide="phone">ID</th>
                             <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Имя</th>
                             <th data-hide="phone"><i class="fa fa-fw fa-envelope text-muted hidden-md hidden-sm hidden-xs"></i> Email</th>
+                            <th data-hide="phone,tablet"> Телефон</th>
                             <th data-hide="phone,tablet"> Роль</th>
                             <th data-hide="phone,tablet"> Уведомлять<br>обнаруженной неисправности</th>
                             <th data-hide="phone,tablet"> Уведомлять<br>исправлении неисправности</th>
@@ -115,6 +116,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
+                    {data: 'phone', name: 'phone'},
                     {data: 'role', name: 'role'},
                     {data: 'notifyDetectedFault', name: 'notifyDetectedFault'},
                     {data: 'notifyFaultFix', name: 'notifyFaultFix'},
@@ -123,8 +125,6 @@
             });
 
             /* END BASIC */
-
-
 
             $('#userList').on('click', 'a.deleteRow', function () {
                 var btn = this;

@@ -63,7 +63,7 @@
 
                             <div class="col-sm-6">
 
-                                {!! Form::email('phone', old('phone', isset($userData) ? $userData->phone : null), ['class' => 'form-control', 'id'=>'phone']) !!}
+                                {!! Form::text('phone', old('phone', isset($userData) ? $userData->phone : null), ['class' => 'form-control', 'id'=>'phone']) !!}
 
                                 @if ($errors->has('phone'))
                                     <p class="text-danger">{{ $errors->first('phone') }}</p>
