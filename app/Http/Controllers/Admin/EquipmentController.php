@@ -45,7 +45,6 @@ class EquipmentController extends Controller
             'area_id' => 'required|numeric'
         ];
 
-
         $message = [
             'validation.required' => 'Это поле должно быть заполнено!'
         ];

@@ -58,7 +58,7 @@
 
                             <div class="col-sm-6">
 
-                                {!! Form::textarea('service_comment', old('service_comment', $application->service_comment), ['placeholder' => 'Комментарий', 'class' => 'form-control', 'rows' => 3]) !!}
+                                {!! Form::textarea('service_comment', old('service_comment', $application->service_comment), ['placeholder' => 'Комментарий (необязательно)', 'class' => 'form-control', 'rows' => 3]) !!}
 
                                 @if ($errors->has('service_comment'))
                                     <span class="text-danger">{{ $errors->first('service_comment') }}</span>

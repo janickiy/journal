@@ -87,6 +87,7 @@
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Да, подтвердить!",
+                        cancelButtonText: "Отмена",
                         closeOnConfirm: false
                     },
                     function (isConfirm) {

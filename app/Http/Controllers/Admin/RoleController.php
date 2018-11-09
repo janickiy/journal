@@ -40,7 +40,11 @@ class RoleController extends Controller
             'description' => 'required'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'validation.required' => 'Это поле должно быть заполнено!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -90,7 +94,11 @@ class RoleController extends Controller
             'description' => 'required'
         );
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'validation.required' => 'Это поле должно быть заполнено!'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();

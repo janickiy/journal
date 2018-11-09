@@ -139,6 +139,7 @@
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Да, удалить!",
+                        cancelButtonText: "Отмена",
                         closeOnConfirm: false
                     },
                     function (isConfirm) {

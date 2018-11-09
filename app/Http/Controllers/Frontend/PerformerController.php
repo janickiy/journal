@@ -56,7 +56,6 @@ class PerformerController extends Controller
         $rules = [
             'work_comment' => 'required|max:255',
             'worktypes_id' => 'required|integer',
-            'service_comment' => 'required'
         ];
 
         $message = [

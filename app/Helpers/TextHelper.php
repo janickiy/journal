@@ -303,7 +303,7 @@ function mysql_russian_datetime($datestr = '', $short = false)
     $hour = date("G", $result1);
     $minute = date("i", $result1);
     $dayofweek = $days[date("N", $result1)];
-    $result = $day . ' ' . $month . ' ' . $year;
+    $result = $day . ' ' . $month . ' ' . $year . '  ' . $hour . ':' .$minute;
 
     return $result;
 }
