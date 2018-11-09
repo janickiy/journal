@@ -95,6 +95,12 @@
                             <th class="hasinput" >
 
                             </th>
+                            <th class="hasinput" >
+
+                            </th>
+                            <th class="hasinput" >
+
+                            </th>
                         </tr>
 
                         <tr>
@@ -112,6 +118,8 @@
                             <th data-hide="phone">Тип работы</th>
                             <th data-hide="phone">Комментарии мастера</th>
                             <th data-hide="phone">Комментарии специалиста<br>СГМ ил и СГЭ</th>
+                            <th data-hide="phone">Время простоя,<br>час.</th>
+                            <th data-hide="phone">Простой<br>(у словные часы)</th>
                             <th data-hide="phone">Статус</th>
                         </tr>
 
@@ -251,7 +259,12 @@
 
                'createdRow': function( row, data, dataIndex ) {
                     $(row).attr('id', 'rowid_' + data['id']);
+
+                    if (data['status_journal'] == 0) $(row).attr('class', 'danger');
+
                 },
+                "pageLength": 100,
+                "bPaginate": false,
                 "order": [[ 0, "desc" ]],
                 processing: true,
                 serverSide: true,
@@ -279,6 +292,8 @@
                     {data: 'worktypes.code', name: 'worktypes.code'},
                     {data: 'master_comment', name: 'master_comment'},
                     {data: 'service_comment', name: 'service_comment'},
+                    {data: 'downtime', name: 'downtime',searchable: false, orderable: false},
+                    {data: 'downtime_hour', name: 'downtime_hour',searchable: false, orderable: false},
                     {data: 'status', name: 'status'},
                 ],
                 dom: 'Blfrtip',

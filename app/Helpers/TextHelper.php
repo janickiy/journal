@@ -23,6 +23,10 @@ function appStatus($status)
             return 'отменена';
             break;
 
+        case -2:
+            return 'Не принята';
+            break;
+
         default:
             return $status;
     }
@@ -366,11 +370,11 @@ function str_to_utf8($string)
  * @param $data2
  * @return int
  */
-function diff_d($date1, $data2) {
+function diff_d($date1, $data2, $time = 60) {
     if ($date1 && $data2) {
         $date1 = strtotime($date1);
         $date2 = strtotime($data2);
         $diff = ABS($date1 - $date2);
-        return intval($diff / 60);
+        return intval($diff / $time);
     }
 }

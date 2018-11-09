@@ -27,6 +27,10 @@ class DataTableController extends Controller
 
         return Datatables::of($applications)
 
+            ->addColumn('status_journal', function ($applications) {
+                return $applications->status;
+            })
+
             ->addColumn('equipment', function ($applications) {
                 return isset($applications->equipment->name) && $applications->equipment->name ? $applications->equipment->name : '';
             })
@@ -52,7 +56,7 @@ class DataTableController extends Controller
                 if ($applications->status == 1)  {
                     //return '<a title="Оборудование принял" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.applicant.accept', ['id' => $applications->id]) . '"><span  class="fa fa-check"></span></a>';
 
-                    return '<a title="Оборудование принял" class="btn btn-xs btn-primary acceptRow" id="' . $applications->id . '"><span  class="fa fa-check"></span></a>';
+                    return '<a title="Принять оборудование" class="btn btn-xs btn-primary acceptRow" id="' . $applications->id . '"><span  class="fa fa-check"></span></a>';
 
                 } else {
                     return (empty($applications->time_fixed) && $applications->status == 0) ? $editBtn . $deleteBtn : '';
@@ -69,6 +73,10 @@ class DataTableController extends Controller
         $applications = Journal::where('status','>',-1);
 
         return Datatables::of($applications)
+
+            ->addColumn('status_journal', function ($applications) {
+                return $applications->status;
+            })
 
             ->addColumn('equipment', function ($applications) {
                 return isset($applications->equipment->name) && $applications->equipment->name ? $applications->equipment->name : '';

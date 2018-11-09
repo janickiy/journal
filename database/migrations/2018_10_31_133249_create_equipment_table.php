@@ -17,6 +17,7 @@ class CreateEquipmentTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->integer('time_weight')->default(1);
             $table->boolean('status')->default(1);
             $table->integer('area_id')->index('area_id');
             $table->timestamps();

@@ -68,6 +68,20 @@
 
                         <div class="form-group">
 
+                            {!! Form::label('time_weight', 'Врменной вес*', ['class' => 'col-sm-3 control-label']) !!}
+
+                            <div class="col-sm-6">
+
+                                {!! Form::selectRange('time_weight', 1, 20, isset($equipment) ? $equipment->time_weight : 1, ['class' => 'form-control', 'placeholder' => 'Выберите']) !!}
+
+                                @if ($errors->has('time_weight'))
+                                    <span class="text-danger">{{ $errors->first('time_weight') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
                             {!! Form::label('status', 'Активна', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">

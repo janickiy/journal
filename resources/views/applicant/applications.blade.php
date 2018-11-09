@@ -71,7 +71,11 @@
             var table = $("#itemList").DataTable({
                 'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
+
+                    if (data['status_journal'] == 0) $(row).attr('class', 'danger');
                 },
+                "pageLength": 100,
+                "bPaginate": false,
                 processing: true,
                 serverSide: true,
                 "order": [[ 0, "desc" ]],

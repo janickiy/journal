@@ -42,7 +42,8 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'area_id' => 'required|numeric'
+            'area_id' => 'required|numeric',
+            'time_weight' => 'required|numeric',
         ];
 
         $message = [
@@ -100,7 +101,8 @@ class EquipmentController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'area_id' => 'required|numeric'
+            'area_id' => 'required|numeric',
+            'time_weight' => 'required|numeric',
         ];
 
         $message = [
@@ -117,6 +119,7 @@ class EquipmentController extends Controller
             $data['name'] = $request->name;
             $data['description'] = $request->description;
             $data['area_id'] = $request->area_id;
+            $data['time_weight'] = $request->time_weight;
 
             if ($request->input('status')){
                 $data['status'] = 1;

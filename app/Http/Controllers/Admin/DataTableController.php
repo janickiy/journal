@@ -192,6 +192,10 @@ class DataTableController extends Controller
 
         return Datatables::of($journal)
 
+            ->addColumn('status_journal', function ($journal) {
+                return $journal->status;
+            })
+
             ->editColumn('less30min', function ($journal) {
                 return $journal->less30min == 1 ? 'да' : 'нет';
             })
@@ -218,6 +222,14 @@ class DataTableController extends Controller
 
             ->editColumn('worktypes.code', function ($journal) {
                 return isset($journal->worktypes->code) ? $journal->worktypes->code : '';
+            })
+
+            ->addColumn('downtime', function ($journal) {
+                return $journal->created_at && $journal->time_fixed ? diff_d($journal->created_at,$journal->time_fixed, 60):'';
+            })
+
+            ->addColumn('downtime_hour', function ($journal) {
+                return $journal->created_at && $journal->time_fixed ? diff_d($journal->created_at,$journal->time_fixed, 60) * $journal->equipment->time_weight :'';
             })
 
             ->editColumn('status', function ($journal) {
