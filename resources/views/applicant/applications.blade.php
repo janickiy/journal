@@ -116,7 +116,8 @@
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#rowid_" + rowid).remove();
+                                //$("#rowid_" + rowid).remove();
+                                $("#" + rowid).remove();
                                 swal("Сделано!", "Заявка отменена!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
@@ -151,7 +152,8 @@
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#rowid_" + rowid).remove();
+                              //  $("#rowid_" + rowid).remove();
+                                $("#" + rowid).remove();
                                 swal("Сделано!", "Оборудование принято!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
