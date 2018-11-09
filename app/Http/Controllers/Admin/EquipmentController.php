@@ -47,10 +47,12 @@ class EquipmentController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'area_id.required' => 'Это поле должно быть заполнено!',
+            'time_weight.required' => 'Это поле должно быть заполнено!',
         ];
 
-        $validator = Validator::make($request->all(), $rules,  $message);
+        $validator = Validator::make($request->all(),  $rules, $message);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -106,7 +108,9 @@ class EquipmentController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'area_id.required' => 'Это поле должно быть заполнено!',
+            'time_weight.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);

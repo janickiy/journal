@@ -63,7 +63,8 @@ class ApplicantController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'equipment_id.required' => 'Это поле должно быть заполнено!',
+            'disrepair_description.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -149,7 +150,8 @@ class ApplicantController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'equipment_id.required' => 'Это поле должно быть заполнено!',
+            'disrepair_description.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);

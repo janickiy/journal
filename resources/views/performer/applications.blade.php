@@ -102,7 +102,7 @@
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#" + rowid).html('<a title="Редактировать" class="btn btn-xs btn-primary"  href="' + SITE_URL + '/performer/edit/' + rowid + '"><span  class="fa fa-edit"></span></a>');
+                                $("#applications-" + rowid).html('<a title="Редактировать" class="btn btn-xs btn-primary"  href="' + SITE_URL + '/performer/edit/' + rowid + '"><span  class="fa fa-edit"></span></a>');
                                 swal("Сделано!", "Неисправность устранена!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

@@ -59,7 +59,8 @@ class PerformerController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'work_commen.required' => 'Это поле должно быть заполнено!',
+            'worktypes_id.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);

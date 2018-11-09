@@ -87,7 +87,7 @@ class DataTableController extends Controller
 
             ->addColumn('actions', function ($applications) {
                 $editBtn = (!empty($applications->time_fixed) && $applications->status == 0) ? '<a title="Редактировать" class="btn btn-xs btn-primary"  href="' . URL::route('frontend.performer.edit', ['id' => $applications->id]) . '"><span  class="fa fa-edit"></span></a> &nbsp;':'';
-                $fixBtn = empty($applications->time_fixed) ? '<a title="Неисправность устранена" class="btn btn-xs btn-primary fixRow" id="' . $applications->id . '"><span class="fa fa-check"></span></a>':'';
+                $fixBtn = empty($applications->time_fixed) ? '<div id="applications-' . $applications->id . '"><a title="Неисправность устранена" class="btn btn-xs btn-primary fixRow" id="' . $applications->id . '"><span class="fa fa-check"></span></a></div>':'';
 
                 return $editBtn . $fixBtn;
             })

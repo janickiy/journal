@@ -41,7 +41,9 @@ class RoleController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'display_name.required' => 'Это поле должно быть заполнено!',
+            'description.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -95,7 +97,9 @@ class RoleController extends Controller
         );
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'display_name.required' => 'Это поле должно быть заполнено!',
+            'description.required' => 'Это поле должно быть заполнено!',
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);

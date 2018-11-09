@@ -38,7 +38,8 @@ class AreaController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'code.required' => 'Это поле должно быть заполнено!'
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
@@ -81,7 +82,8 @@ class AreaController extends Controller
         ];
 
         $message = [
-            'validation.required' => 'Это поле должно быть заполнено!'
+            'name.required' => 'Это поле должно быть заполнено!',
+            'code.required' => 'Это поле должно быть заполнено!'
         ];
 
         $validator = Validator::make($request->all(), $rules, $message);
