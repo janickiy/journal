@@ -180,7 +180,7 @@ Use search to find needed section.
         <ul>
 
             <li {!! Request::is('admin') ? ' class="active"' : '' !!}>
-                <a href="{{ URL::route('frontend.performer.applications') }}"><i class="fa fa-fw fa-book"></i> Мои заявки</a>
+                <a href="{{ URL::route('frontend.applicant.applications') }}"><i class="fa fa-fw fa-book"></i> Мои заявки</a>
             </li>
 
 

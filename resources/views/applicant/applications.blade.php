@@ -139,7 +139,7 @@
                         html: true,
                         title: "Принять оборудование?",
                         text:
-                            '<textarea rows="3" cols="45" id="comment" placeholder="Ваш комментарий" name="comment" ></textarea>',
+                            '<textarea rows="3" cols="45" id="comment" placeholder="Ваш комментарий (в спорных случаях)" name="comment" ></textarea>',
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
