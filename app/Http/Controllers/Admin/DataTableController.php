@@ -205,7 +205,7 @@ class DataTableController extends Controller
             })
 
             ->editColumn('equipment.name', function ($journal) {
-                return $journal->equipment->name;
+                return isset($journal->equipment->name) ? $journal->equipment->name : '';
             })
 
             ->editColumn('continues_used', function ($journal) {
@@ -229,7 +229,7 @@ class DataTableController extends Controller
             })
 
             ->addColumn('downtime_hour', function ($journal) {
-                return $journal->created_at && $journal->time_fixed ? date('H:i:s',diff_d($journal->created_at,$journal->time_fixed, 1) * $journal->equipment->time_weight):'';
+                return $journal->created_at && $journal->time_fixed && isset($journal->equipment->time_weight) ? date('H:i:s',diff_d($journal->created_at,$journal->time_fixed, 1) * $journal->equipment->time_weight):'';
             })
 
             ->editColumn('status', function ($journal) {
