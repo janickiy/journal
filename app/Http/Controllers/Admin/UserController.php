@@ -215,7 +215,7 @@ class UserController extends Controller
             User::where('id', $id)->update($data);
             RoleUser::where('user_id', $id)->update(['role_id' => $request->role_id]);
 
-            return redirect("admin/user/list")->with('success', 'Данные пользователя обнавлены');
+            return redirect("admin/user/list")->with('success', 'Данные пользователя обновлены');
         }
     }
 

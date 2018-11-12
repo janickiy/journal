@@ -89,7 +89,7 @@ class ApplicantController extends Controller
 
             $equipment = Equipment::where('id',$request->equipment_id)->first();
 
-            $msg = 'Поступила заявка на ремонт: ' . ucfirst($equipment->area->name) . ' ' . $equipment->name . ' ' . $request->disrepair_description . '';
+            $msg = 'Поступила заявка на ремонт: ' . ucfirst($equipment->area->name) . ' ' . ucfirst($equipment->name) . ' ' . $request->disrepair_description . '';
 
             foreach ($users as $user) {
                if ($user->phone) sendSMS($user->phone,$msg);
