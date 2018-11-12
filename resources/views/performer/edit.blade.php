@@ -54,7 +54,7 @@
 
                         <div class="form-group">
 
-                            {!! Form::label('service_comment', 'Комментарий', ['class' => 'col-sm-3 control-label']) !!}
+                            {!! Form::label('service_comment', 'Комментарий (необязательно)', ['class' => 'col-sm-3 control-label']) !!}
 
                             <div class="col-sm-6">
 

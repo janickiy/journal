@@ -225,11 +225,11 @@ class DataTableController extends Controller
             })
 
             ->addColumn('downtime', function ($journal) {
-                return $journal->created_at && $journal->time_fixed ? diff_d($journal->created_at,$journal->time_fixed, 60):'';
+                return $journal->created_at && $journal->time_fixed ? date('H:i:s',diff_d($journal->created_at,$journal->time_fixed, 1)) :'';
             })
 
             ->addColumn('downtime_hour', function ($journal) {
-                return $journal->created_at && $journal->time_fixed ? diff_d($journal->created_at,$journal->time_fixed, 60) * $journal->equipment->time_weight :'';
+                return $journal->created_at && $journal->time_fixed ? date('H:i:s',diff_d($journal->created_at,$journal->time_fixed, 1) * $journal->equipment->time_weight):'';
             })
 
             ->editColumn('status', function ($journal) {

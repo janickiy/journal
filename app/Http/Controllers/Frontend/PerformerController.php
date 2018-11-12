@@ -80,7 +80,10 @@ class PerformerController extends Controller
 
             $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' Оборудование готово к работе';
 
-            if ($journal->manufacturemember->notifyFaultFix) sendSMS($journal->manufacturemember->phone, $msg);
+            if ($journal->manufacturemember->notifyFaultFix)  {
+                if ($journal->manufacturemember->phone) sendSMS($journal->manufacturemember->phone, $msg);
+                if ($journal->servicemember->phone) sendSMS($journal->servicemember->phone, $msg);
+            }
 
             return redirect('performer')->with('success', 'Заявка обновлена');
         }

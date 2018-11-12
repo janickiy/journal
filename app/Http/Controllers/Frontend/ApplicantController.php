@@ -80,18 +80,19 @@ class ApplicantController extends Controller
 
             Journal::create(array_merge($request->all(),$data));
 
-            $users = User::select('users.*')
-                ->join('roles','roles.id','=','users.role_id')
+            $users = User::select('*')
+               // ->join('roles','roles.id','=','users.role_id')
                 //  ->where('users.area_id',Auth::user()->area_id)
-                ->where('users.notifyDetectedFault',1)
-                ->where('roles.name','=','performer')
+                ->where('notifyDetectedFault',1)
+                //->where('roles.name','=','performer')
                 ->get();
 
             $equipment = Equipment::where('id',$request->equipment_id)->first();
 
+            $msg = 'Поступила заявка на ремонт: ' . ucfirst($equipment->area->name) . ' ' . $equipment->name . ' ' . $request->disrepair_description . '';
+
             foreach ($users as $user) {
-                $msg = 'Поступила заявка на ремонт: ' . $equipment->area->name . ' ' . $equipment->name . ' ' . $request->disrepair_description . '';
-                sendSMS($user->phone,$msg);
+               if ($user->phone) sendSMS($user->phone,$msg);
             }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');

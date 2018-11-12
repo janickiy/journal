@@ -105,7 +105,7 @@
 
                         <tr>
                             <th data-hide="phone">№</th>
-                            <th data-hide="phone">Неисправность<br>обнаружена</th>
+                            <th data-hide="phone">Неисправность <br>обнаружена</th>
                             <th data-hide="phone">Меньше 30 мин.</th>
                             <th data-hide="phone">Участок</th>
                             <th data-hide="phone">Оборудование</th>
@@ -115,11 +115,11 @@
                             <th data-hide="phone">Неисправность устранена</th>
                             <th data-hide="phone">Представитель СГМ или СГЭ</th>
                             <th data-hide="phone">Выполненные работы</th>
-                            <th data-hide="phone">Тип работы</th>
+                            <th data-hide="phone">Тип работ</th>
                             <th data-hide="phone">Комментарии мастера</th>
-                            <th data-hide="phone">Комментарии специалиста<br>СГМ ил и СГЭ</th>
+                            <th data-hide="phone">Комментарии специалиста<br> СГМ или СГЭ</th>
                             <th data-hide="phone">Время простоя,<br>час.</th>
-                            <th data-hide="phone">Простой<br>(у словные часы)</th>
+                            <th data-hide="phone">Простой <br>(условные часы)</th>
                             <th data-hide="phone">Статус</th>
                         </tr>
 
@@ -314,17 +314,6 @@
                         text: 'Экспортировать в csv',
                         charset: 'UTF-8',
                         bom: true,
-                        className: 'exportExcel',
-                        filename: 'Журнал простоев оборудования',
-                        exportOptions: {
-                            modifier: {
-                                page: 'all'
-                            }
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Экспортировать в pdf',
                         className: 'exportExcel',
                         filename: 'Журнал простоев оборудования',
                         exportOptions: {
