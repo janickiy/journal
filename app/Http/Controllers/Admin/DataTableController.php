@@ -236,6 +236,13 @@ class DataTableController extends Controller
                 return appStatus($journal->status);
             })
 
-           ->make(true);
+            ->addColumn('actions', function ($journal) {
+
+                $deleteBtn = '<a class="btn btn-xs btn-danger deleteRow" id="' . $journal->id . '"><span class="fa fa-remove"></span></a>';
+
+                return $deleteBtn;
+            })
+
+             ->rawColumns(['actions'])->make(true);
     }
 }

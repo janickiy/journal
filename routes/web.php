@@ -22,13 +22,14 @@ Auth::routes();
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
-
 Route::post('/admin/authenticate', 'admin\AdminLoginController@authenticate');
 Route::get('/logout', 'Admin\AdminLoginController@logout');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('','Admin\DashboardController@index')->name('admin.dashboard')->middleware(['permission:admin']);
+
+    Route::delete('journal/delete/{id}','Admin\JournalController@destroy')->name('admin.journal.delete')->middleware(['permission:admin'])->where('id', '[0-9]+');
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list','Admin\UserController@index')->name('admin.user.list')->middleware(['permission:admin|manage_user']);
@@ -38,7 +39,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::put('update','Admin\UserController@update')->name('admin.user.update')->middleware(['permission:admin|edit_user']);
         Route::delete('delete/{id}','Admin\UserController@destroy')->name('admin.user.delete')->middleware(['permission:admin|delete_user'])->where('id', '[0-9]+');
     });
-
 
     Route::group(['prefix' => 'role'], function () {
         Route::get('list','Admin\RoleController@list')->name('admin.role.list')->middleware(['permission:admin|manage_role']);
@@ -96,7 +96,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::any('worktypes', 'Admin\DataTableController@getWorktypes')->name('admin.datatable.worktypes')->middleware(['permission:admin']);
         Route::any('settings', 'Admin\DataTableController@getSettings')->name('admin.datatable.settings')->middleware(['permission:admin']);
         Route::any('journal', 'Admin\DataTableController@getJournal')->name('admin.datatable.journal')->middleware(['permission:admin']);
-
     });
 });
 
@@ -118,5 +117,3 @@ Route::group(['prefix' => 'performer', 'middleware' => ['auth']], function () {
     Route::put('update','Frontend\PerformerController@update')->name('frontend.performer.update')->middleware(['permission:admin|performer']);
     Route::get('fix/{id}','Frontend\PerformerController@fix')->name('frontend.performer.fix')->middleware(['permission:admin|performer'])->where('id', '[0-9]+');
 });
-
-

@@ -85,21 +85,18 @@
                             </th>
 
                             <th class="hasinput" >
-
                             </th>
 
                             <th class="hasinput" >
-
                             </th>
 
                             <th class="hasinput" >
-
                             </th>
                             <th class="hasinput" >
-
                             </th>
                             <th class="hasinput" >
-
+                            </th>
+                            <th class="hasinput" >
                             </th>
                         </tr>
 
@@ -121,6 +118,7 @@
                             <th data-hide="phone">Время простоя,<br>час.</th>
                             <th data-hide="phone">Простой <br>(условные часы)</th>
                             <th data-hide="phone">Статус</th>
+                            <th data-hide="phone">Действия</th>
                         </tr>
 
                         </thead>
@@ -295,6 +293,7 @@
                     {data: 'downtime', name: 'downtime',searchable: false, orderable: false},
                     {data: 'downtime_hour', name: 'downtime_hour',searchable: false, orderable: false},
                     {data: 'status', name: 'status'},
+                    {data: "actions", name: 'actions', orderable: false, searchable: false}
                 ],
                 dom: 'Blfrtip',
                 buttons: [
@@ -337,6 +336,45 @@
             });
 
             /* END COLUMN FILTER */
+
+            // Delete start
+            $(document).ready(function () {
+
+                $('#datatable_fixed_column').on('click', 'a.deleteRow', function () {
+
+                    var btn = this;
+                    var rowid = $(this).attr('id');
+                    swal({
+                            title: "Вы уверены?",
+                            text: "Вы не сможете восстановить эту информацию!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Да, удалить!",
+                            cancelButtonText: "Отмена",
+                            closeOnConfirm: false
+                        },
+                        function(isConfirm){
+                            if (!isConfirm) return;
+                            $.ajax({
+                                url: SITE_URL + "/admin/journal/delete/" + rowid,
+                                type: "DELETE",
+                                dataType: "html",
+                                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                                success: function () {
+                                    $("#rowid_"+rowid).remove();
+                                    swal("Сделано!", "Данные успешно удаленны!", "success");
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    swal("Ошибка при удалении!", "Попробуйте еще раз", "error");
+                                }
+                            });
+                        });
+                });
+            });
+            // Delete End
+
+
         });
 
     </script>
