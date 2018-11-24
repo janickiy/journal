@@ -5,7 +5,7 @@
 @section('css')
 
     <style>
-        .exportExcel{
+        .exportExcel {
             padding: 5px;
             border: 1px solid grey;
             margin: 5px;
@@ -31,103 +31,94 @@
                 <!-- widget div-->
                 <div>
 
-                    <table id="datatable_fixed_column" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
+                    <div class="table-responsive">
+                        <table id="datatable_fixed_column" class="table table-hover table-bordered table-hover"  width="100%">
+                            <thead>
+                            <tr>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" id="session-filter"
+                                           placeholder="Фильтровать по серии карты"/>
+                                </th>
+                                <th class="hasinput  FilterinputSearc">
+                                    <input id="reportrange" type="text" placeholder="Фильтр Date" class="form-control"
+                                           data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
+                                </th>
+                                <th class="hasinput">
 
-                        <tr>
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" placeholder="Фильтровать по участоку"/>
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" placeholder="Фильтровать по оборудованию"/>
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control"  placeholder="Фильтровать по Описание неисправности"/>
+                                </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput">
-                                <input type="text" class="form-control" id="session-filter" placeholder="Фильтровать по серии карты" />
-                            </th>
-
-                            <th class="hasinput  FilterinputSearc" >
-                                <input id="reportrange" type="text" placeholder="Фильтр Date" class="form-control" data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
                                 </th>
 
-                            <th class="hasinput" >
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" placeholder="Фильтровать по Представитель производства"/>
+                                </th>
 
-                            </th>
+                                <th class="hasinput">
+                                    <input id="reportrange2" type="text" placeholder="Фильтр Date" class="form-control"
+                                           data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" placeholder="Фильтровать по Представитель СГМ или СГЭ"/>
+                                </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по участоку" />
-                            </th>
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" class="form-control" placeholder="Фильтровать по Тип работы"/>
+                                </th>
 
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по оборудованию" />
-                            </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по Описание неисправности" />
-                            </th>
+                                </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
+                                </th>
 
-                            </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по Представитель производства" />
-                            </th>
+                                </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
-                                <input id="reportrange2" type="text" placeholder="Фильтр Date" class="form-control" data-dateformat="YYYY-MM-DD hh:mm:ss - YYYY-MM-DD hh:mm:ss">
-                            </th>
+                                </th>
+                                <th class="hasinput">
 
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по Представитель СГМ или СГЭ" />
-                            </th>
+                                </th>
+                            </tr>
 
-                            <th class="hasinput" >
+                            <tr>
+                                <th data-hide="phone">№</th>
+                                <th data-hide="phone">Неисправность <br>обнаружена</th>
+                                <th data-hide="phone">Меньше 30 мин.</th>
+                                <th data-hide="phone">Участок</th>
+                                <th data-hide="phone">Оборудование</th>
+                                <th data-hide="phone">Описание неисправности</th>
+                                <th data-hide="phone">Оборудование продолжает работать</th>
+                                <th data-hide="phone">Представитель производства</th>
+                                <th data-hide="phone">Неисправность устранена</th>
+                                <th data-hide="phone">Представитель СГМ или СГЭ</th>
+                                <th data-hide="phone">Выполненные работы</th>
+                                <th data-hide="phone">Тип работ</th>
+                                <th data-hide="phone">Комментарии мастера</th>
+                                <th data-hide="phone">Комментарии специалиста<br> СГМ или СГЭ</th>
+                                <th data-hide="phone">Время простоя,<br>час.</th>
+                                <th data-hide="phone">Простой <br>(условные часы)</th>
+                                <th data-hide="phone">Статус</th>
+                            </tr>
 
-                            </th>
-
-                            <th class="hasinput" >
-                                <input type="text" class="form-control" placeholder="Фильтровать по Тип работы" />
-                            </th>
-
-                            <th class="hasinput" >
-
-                            </th>
-
-                            <th class="hasinput" >
-
-                            </th>
-
-                            <th class="hasinput" >
-
-                            </th>
-                            <th class="hasinput" >
-
-                            </th>
-                            <th class="hasinput" >
-
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <th data-hide="phone">№</th>
-                            <th data-hide="phone">Неисправность <br>обнаружена</th>
-                            <th data-hide="phone">Меньше 30 мин.</th>
-                            <th data-hide="phone">Участок</th>
-                            <th data-hide="phone">Оборудование</th>
-                            <th data-hide="phone">Описание неисправности</th>
-                            <th data-hide="phone">Оборудование продолжает работать</th>
-                            <th data-hide="phone">Представитель производства</th>
-                            <th data-hide="phone">Неисправность устранена</th>
-                            <th data-hide="phone">Представитель СГМ или СГЭ</th>
-                            <th data-hide="phone">Выполненные работы</th>
-                            <th data-hide="phone">Тип работ</th>
-                            <th data-hide="phone">Комментарии мастера</th>
-                            <th data-hide="phone">Комментарии специалиста<br> СГМ или СГЭ</th>
-                            <th data-hide="phone">Время простоя,<br>час.</th>
-                            <th data-hide="phone">Простой <br>(условные часы)</th>
-                            <th data-hide="phone">Статус</th>
-                        </tr>
-
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- end widget content -->
 
@@ -139,14 +130,13 @@
 
     </div>
 
-
 @endsection
 
 @section('js')
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             pageSetUp();
 
@@ -204,11 +194,11 @@
                 },
 
                 function (start_date, end_date) {
-                    if (start_date && end_date) this.element.val(start_date.format('YYYY-MM-DD hh:mm:ss')+' - '+end_date.format('YYYY-MM-DD hh:mm:ss'));
+                    if (start_date && end_date) this.element.val(start_date.format('YYYY-MM-DD hh:mm:ss') + ' - ' + end_date.format('YYYY-MM-DD hh:mm:ss'));
                 });
 
             //Filter the datatable on the datepicker apply event
-            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
                 startdate = picker.startDate.format('YYYY-MM-DD hh:mm:ss');
                 enddate = picker.endDate.format('YYYY-MM-DD hh:mm:ss');
                 otable.draw();
@@ -245,11 +235,11 @@
                 },
 
                 function (start_date2, end_date2) {
-                    if (start_date2 && end_date2) this.element.val(start_date2.format('YYYY-MM-DD hh:mm:ss')+' - '+end_date2.format('YYYY-MM-DD hh:mm:ss'));
+                    if (start_date2 && end_date2) this.element.val(start_date2.format('YYYY-MM-DD hh:mm:ss') + ' - ' + end_date2.format('YYYY-MM-DD hh:mm:ss'));
                 });
 
             //Filter the datatable on the datepicker apply event
-            $('#reportrange2').on('apply.daterangepicker', function(ev, picker) {
+            $('#reportrange2').on('apply.daterangepicker', function (ev, picker) {
                 startdate2 = picker.startDate.format('YYYY-MM-DD hh:mm:ss');
                 enddate2 = picker.endDate.format('YYYY-MM-DD hh:mm:ss');
                 otable.draw();
@@ -257,23 +247,26 @@
 
             var otable = $('#datatable_fixed_column').DataTable({
 
-               'createdRow': function( row, data, dataIndex ) {
+                'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
 
                     if (data['status_journal'] == 0) $(row).attr('class', 'danger');
 
                 },
+                "oLanguage": {
+                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                },
                 "pageLength": 100,
                 "bPaginate": false,
-                "order": [[ 0, "desc" ]],
+                "order": [[0, "desc"]],
                 processing: true,
                 serverSide: true,
                 ajax: {
                     url: '{!!URL::route('admin.datatable.journal') !!}',
-                    data: function(d) {
+                    data: function (d) {
                         d.date = $('#reportrange').val();
                     },
-                    data: function(d) {
+                    data: function (d) {
                         d.date = $('#reportrange2').val();
                     },
                 },
@@ -292,8 +285,8 @@
                     {data: 'worktypes.code', name: 'worktypes.code'},
                     {data: 'master_comment', name: 'master_comment'},
                     {data: 'service_comment', name: 'service_comment'},
-                    {data: 'downtime', name: 'downtime',searchable: false, orderable: false},
-                    {data: 'downtime_hour', name: 'downtime_hour',searchable: false, orderable: false},
+                    {data: 'downtime', name: 'downtime', searchable: false, orderable: false},
+                    {data: 'downtime_hour', name: 'downtime_hour', searchable: false, orderable: false},
                     {data: 'status', name: 'status'},
                 ],
                 dom: 'Blfrtip',
@@ -322,7 +315,7 @@
                             }
                         }
                     },
-                    ]
+                ]
             });
 
             /* END BASIC */

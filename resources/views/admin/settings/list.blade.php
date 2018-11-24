@@ -23,24 +23,27 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col-md-12 padding-bottom-10">
-                                <a href="{{ URL::route('admin.settings.create') }}" class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить настройки</a>
+                                <a href="{{ URL::route('admin.settings.create') }}"
+                                   class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить
+                                    настройки</a>
                             </div>
                         </div>
                     </div>
-
-                    <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Параметр</th>
-                            <th>Тип</th>
-                            <th>Значение</th>
-                            <th>Название</th>
-                            <th width="8%">Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Тип</th>
+                                <th>Значение</th>
+                                <th>Название</th>
+                                <th width="8%">Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -81,9 +84,7 @@
             };
 
             $('#itemList').dataTable({
-                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-                    "t" +
-                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "sDom": 'lfrtip',
                 "autoWidth": true,
                 "oLanguage": {
                     "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'

@@ -23,7 +23,6 @@ class UserController extends Controller
 
     public function index()
     {
-		unlink('/storage/image/szfafIqdqL7w5XlcRHcnDTjsqjVBPYZXEiNVQjkV.jpeg');
         return view('admin.user.list')->with('title', 'Пользователи');
     }
 

@@ -6,13 +6,13 @@
 
 
     <style>
-        .exportExcel{
+        .exportExcel {
             padding: 5px;
             border: 1px solid grey;
             margin: 5px;
             cursor: pointer;
         }
-        </style>
+    </style>
 @endsection
 
 
@@ -36,26 +36,28 @@
                         <div class="box-header">
                             <div class="row">
                                 <div class="col-md-12 padding-bottom-10">
-                                    <a href="{{ URL::route('admin.equipment.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить оборудование</a>
+                                    <a href="{{ URL::route('admin.equipment.create') }}"
+                                       class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить
+                                        оборудование</a>
                                 </div>
                             </div>
                         </div>
                     @endif
-
-                    <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
-                        <tr>
-                            <th data-hide="phone"> Название</th>
-                            <th data-hide="phone"> Описание</th>
-                            <th data-hide="phone"> Производственный участок</th>
-                            <th data-hide="phone"> Статус</th>
-                            <th data-hide="phone,tablet"> Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                            <tr>
+                                <th data-hide="phone"> Название</th>
+                                <th data-hide="phone"> Описание</th>
+                                <th data-hide="phone"> Производственный участок</th>
+                                <th data-hide="phone"> Статус</th>
+                                <th data-hide="phone,tablet"> Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- end widget content -->
 
@@ -76,7 +78,12 @@
 
         $(document).ready(function () {
             var table = $("#itemList").DataTable({
-                'createdRow': function( row, data, dataIndex ) {
+                "sDom": 'lfrtip',
+                "autoWidth": true,
+                "oLanguage": {
+                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                },
+                'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },
                 processing: true,
@@ -109,7 +116,7 @@
                         cancelButtonText: "Отмена",
                         closeOnConfirm: false
                     },
-                    function(isConfirm){
+                    function (isConfirm) {
                         if (!isConfirm) return;
                         $.ajax({
                             url: SITE_URL + "/admin/equipment/delete/" + rowid,
@@ -117,7 +124,7 @@
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                                $("#rowid_"+rowid).remove();
+                                $("#rowid_" + rowid).remove();
                                 swal("Сделано!", "Данные успешно удаленны!", "success");
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

@@ -26,31 +26,31 @@
                         <div class="box-header">
                             <div class="row">
                                 <div class="col-md-12 padding-bottom-10">
-                                    <a href="{{ URL::route('admin.user.create') }}"
-                                       class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить пользователя</a>
+                                    <a href="{{ URL::route('admin.user.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавитьпользователя</a>
                                 </div>
                             </div>
                         </div>
                     @endif
-
-                    <table id="userList" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
-                        <tr>
-                            <th data-hide="phone">ID</th>
-                            <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Имя</th>
-                            <th data-hide="phone"><i class="fa fa-fw fa-envelope text-muted hidden-md hidden-sm hidden-xs"></i> Email</th>
-                            <th data-hide="phone,tablet"> Телефон</th>
-                            <th data-hide="phone,tablet"> Роль</th>
-                            <th data-hide="phone,tablet"> Уведомлять<br>обнаруженной неисправности</th>
-                            <th data-hide="phone,tablet"> Уведомлять<br>исправлении неисправности</th>
-                            <th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Дата регистрации</th>
-                            <th data-hide="phone,tablet"> Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="userList" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                            <tr>
+                                <th data-hide="phone">ID</th>
+                                <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Имя</th>
+                                <th data-hide="phone"><i  class="fa fa-fw fa-envelope text-muted hidden-md hidden-sm hidden-xs"></i> Email</th>
+                                <th data-hide="phone,tablet"> Телефон</th>
+                                <th data-hide="phone,tablet"> Роль</th>
+                                <th data-hide="phone,tablet"> Уведомлять<br>обнаруженной неисправности</th>
+                                <th data-hide="phone,tablet"> Уведомлять<br>исправлении неисправности</th>
+                                <th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>Дата регистрации
+                                </th>
+                                <th data-hide="phone,tablet"> Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- end widget content -->
 
@@ -96,13 +96,12 @@
             };
 
             $('#userList').dataTable({
-
-                "preDrawCallback": function () {
-                    // Initialize the responsive datatables helper once.
-                    if (!responsiveHelper_dt_basic) {
-                        responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#userList'), breakpointDefinition);
-                    }
+                "sDom": 'lfrtip',
+                "autoWidth": true,
+                "oLanguage": {
+                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
                 },
+
 
                 'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);

@@ -188,6 +188,7 @@ return [
 
         Yajra\DataTables\ButtonsServiceProvider::class,
         Yajra\DataTables\HtmlServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
     ],
 
@@ -245,6 +246,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
         'Carbon'
     ],
 

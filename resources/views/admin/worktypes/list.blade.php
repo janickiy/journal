@@ -25,23 +25,25 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col-md-12 padding-bottom-10">
-                                <a href="{{ URL::route('admin.worktypes.create') }}"  class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить тип работы</a>
+                                <a href="{{ URL::route('admin.worktypes.create') }}"
+                                   class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Добавить
+                                    тип работы</a>
                             </div>
                         </div>
                     </div>
-
-                    <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
-                        <tr>
-                            <th data-hide="phone"> Название</th>
-                            <th data-hide="phone"> Код</th>
-                            <th data-hide="phone,tablet"> Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                            <tr>
+                                <th data-hide="phone"> Название</th>
+                                <th data-hide="phone"> Код</th>
+                                <th data-hide="phone,tablet"> Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- end widget content -->
 
@@ -59,6 +61,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $("#itemList").DataTable({
+                "sDom": 'lfrtip',
+                "autoWidth": true,
+                "oLanguage": {
+                    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                },
                 'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },

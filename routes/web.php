@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Frontend\FrontendController@index');
 
 Route::get('/login', 'Admin\AdminLoginController@login');
 
