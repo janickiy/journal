@@ -16,6 +16,17 @@
                 <!-- widget div-->
                 <div>
 
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-md-12 padding-bottom-10">
+                                <button type="button" class="btn btn-info btn-sm pull-left" onclick="window.history.back();">
+                                    назад
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
                     <p>*-обязательные поля</p>
 
                     {!! Form::open(['url' => isset($equipment) ? URL::route('admin.equipment.update') : URL::route('admin.equipment.store'), 'method' => isset($equipment) ? 'put' : 'post', 'class' => 'form-horizontal']) !!}
@@ -93,16 +104,16 @@
 
                     </div>
 
-                    <div class="box-footer">
-                        <div class="col-sm-4">
-                            <a href="{{ URL::route('admin.equipment.list') }}" class="btn btn-danger btn-flat pull-right">Отменить</a>
-                        </div>
-                        <div class="col-sm-5 margin-bottom-10">
+                    <div class="form-group">
+                        <div class="col-sm-3 control-label"></div>
+                        <div class="col-sm-6">
 
                             {!! Form::submit( 'Отправить', ['class'=>'btn btn-success']) !!}
 
                         </div>
                     </div>
+
+                </div>
 
                     {!! Form::close() !!}
 

@@ -30,6 +30,7 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
                     @endif
                     <div class="table-responsive">
                         <table id="userList" class="table table-striped table-bordered table-hover" width="100%">

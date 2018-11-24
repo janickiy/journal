@@ -29,6 +29,7 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="table-responsive">
                         <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
                             <thead>

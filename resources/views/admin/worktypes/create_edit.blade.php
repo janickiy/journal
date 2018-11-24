@@ -16,6 +16,17 @@
                 <!-- widget div-->
                 <div>
 
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-md-12 padding-bottom-10">
+                                <button type="button" class="btn btn-info btn-sm pull-left" onclick="window.history.back();">
+                                    назад
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
                     <p>*-обязательные поля</p>
 
                     {!! Form::open(['url' => isset($worktypes) ? URL::route('admin.worktypes.update') : URL::route('admin.worktypes.store'), 'method' => isset($worktypes) ? 'put' : 'post', 'class' => 'form-horizontal']) !!}
@@ -52,18 +63,17 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
 
-                    <div class="box-footer">
-                        <div class="col-sm-4">
-                            <a href="{{ URL::route('admin.worktypes.list') }}" class="btn btn-danger btn-flat pull-right">Отменить</a>
-                        </div>
-                        <div class="col-sm-5 margin-bottom-10">
+                    <div class="form-group">
+                        <div class="col-sm-3 control-label"></div>
+                        <div class="col-sm-6">
 
                             {!! Form::submit( 'Отправить', ['class'=>'btn btn-success']) !!}
 
                         </div>
                     </div>
+
+                </div>
 
                     {!! Form::close() !!}
 
