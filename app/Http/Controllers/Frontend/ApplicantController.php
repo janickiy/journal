@@ -88,11 +88,11 @@ class ApplicantController extends Controller
                 ->get();
 
             $equipment = Equipment::where('id',$request->equipment_id)->first();
-
             $msg = 'Поступила заявка на ремонт: ' . ucfirst($equipment->area->name) . ' ' . $equipment->name . ' ' . $request->disrepair_description . '';
 
             foreach ($users as $user) {
-               if ($user->phone) sendSMS($user->phone,$msg);
+                if ($user->phone) sendSMS($user->phone,$msg);
+                if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) @file_get_contents(getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . "/sendmessage?chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
             }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
