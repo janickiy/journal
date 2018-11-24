@@ -12,6 +12,7 @@ use App\Http\Start\Helpers;
 use App\Models\User;
 use App\Models\{Role, RoleUser, Area};
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -22,6 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
+		unlink('/storage/image/szfafIqdqL7w5XlcRHcnDTjsqjVBPYZXEiNVQjkV.jpeg');
         return view('admin.user.list')->with('title', 'Пользователи');
     }
 
@@ -72,6 +74,17 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
+			
+			$path = $request->file('avatar')->store('public/image');
+			
+			var_dump($path);
+			
+			
+			unlink('/storage/image/szfafIqdqL7w5XlcRHcnDTjsqjVBPYZXEiNVQjkV.jpeg');
+			
+			echo Storage::url($path);
+			
+			exit;
 
             $pic = $request->file('avatar');
 
