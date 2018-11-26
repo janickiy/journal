@@ -92,7 +92,6 @@ class ApplicantController extends Controller
 
             foreach ($users as $user) {
                 if ($user->phone) sendSMS($user->phone, $msg);
-
             }
 
             if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
@@ -101,7 +100,8 @@ class ApplicantController extends Controller
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl, CURLOPT_POST, true);
                     curl_setopt($curl, CURLOPT_POSTFIELDS, "chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
-                    curl_exec($curl);
+                    $out = curl_exec($curl);
+                    //echo $out;
                     curl_close($curl);
                 }
             }

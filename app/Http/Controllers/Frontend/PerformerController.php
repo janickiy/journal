@@ -89,7 +89,8 @@ class PerformerController extends Controller
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                         curl_setopt($curl, CURLOPT_POST, true);
                         curl_setopt($curl, CURLOPT_POSTFIELDS, "chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
-                        curl_exec($curl);
+                        $out = curl_exec($curl);
+                        //echo $out;
                         curl_close($curl);
                     }
                 }
