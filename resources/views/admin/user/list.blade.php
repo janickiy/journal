@@ -103,7 +103,6 @@
                     "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
                 },
 
-
                 'createdRow': function (row, data, dataIndex) {
                     $(row).attr('id', 'rowid_' + data['id']);
                 },

@@ -37,8 +37,8 @@
                             <tbody>
                             </tbody>
                         </table>
-                    <div>
-                </div>
+                    </div>
+                        </div>
                 <!-- end widget content -->
 
             </div>
@@ -55,6 +55,11 @@
                 <script type="text/javascript">
                     $(document).ready(function () {
                         var table = $("#itemList").DataTable({
+                            "sDom": 'lfrtip',
+                            "autoWidth": true,
+                            "oLanguage": {
+                                "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+                            },
                             'createdRow': function (row, data, dataIndex) {
                                 $(row).attr('id', 'rowid_' + data['id']);
 
