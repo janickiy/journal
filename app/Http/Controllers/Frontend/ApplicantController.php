@@ -92,7 +92,18 @@ class ApplicantController extends Controller
 
             foreach ($users as $user) {
                 if ($user->phone) sendSMS($user->phone,$msg);
-                if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) @file_get_contents(getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . "/sendmessage?chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
+                if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
+                    if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
+                        if( $curl = curl_init() ) {
+                            curl_setopt($curl, CURLOPT_URL, getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . '/sendMessage');
+                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($curl, CURLOPT_POST, true);
+                            curl_setopt($curl, CURLOPT_POSTFIELDS, "chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
+                            curl_exec($curl);
+                            curl_close($curl);
+                        }
+                    }
+                }
             }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
