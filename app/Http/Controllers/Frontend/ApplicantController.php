@@ -95,6 +95,18 @@ class ApplicantController extends Controller
             }
 
             if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
+
+                if( $curl = curl_init() ) {
+                    curl_setopt($curl, CURLOPT_URL, 'http://janicky.com/proxy.php');
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+                    curl_setopt($curl, CURLOPT_POST, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, "TELEGRAM_API_URL=" . getSetting('TELEGRAM_API_URL') . "&TELEGRAM_TOKEN=" . getSetting('TELEGRAM_TOKEN') . "&TELEGRAM_CHAT_ID=" . getSetting('TELEGRAM_CHAT_ID') . "&msg=" . $msg);
+                    $out = curl_exec($curl);
+                    //echo $out;
+                    curl_close($curl);
+                }
+
+                /**
                 if ($curl = curl_init()) {
                     curl_setopt($curl, CURLOPT_URL, getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . '/sendMessage');
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -104,6 +116,7 @@ class ApplicantController extends Controller
                     //echo $out;
                     curl_close($curl);
                 }
+                **/
             }
 
             return redirect('applicant')->with('success', 'Заявка отправлена');
