@@ -32,23 +32,23 @@ class ApplicantController extends Controller
         $areas = Area::get();
         $area_options = [];
 
-        foreach($areas as $area) {
+        foreach ($areas as $area) {
             $area_options[$area->id] = $area->name;
         }
 
-        $equipments = Equipment::select('equipment.id','equipment.name')
-            ->join('users','users.area_id','=','equipment.area_id')
-            ->where('users.id',Auth::user()->id)
+        $equipments = Equipment::select('equipment.id', 'equipment.name')
+            ->join('users', 'users.area_id', '=', 'equipment.area_id')
+            ->where('users.id', Auth::user()->id)
             ->status()
             ->get();
 
         $equipment_options = [];
 
-        foreach($equipments as $equipment) {
+        foreach ($equipments as $equipment) {
             $equipment_options[$equipment->id] = $equipment->name;
         }
 
-        return view('applicant.create_edit', compact('area_options','equipment_options'))->with('title', 'Создание заявки');
+        return view('applicant.create_edit', compact('area_options', 'equipment_options'))->with('title', 'Создание заявки');
     }
 
     /**
@@ -78,31 +78,31 @@ class ApplicantController extends Controller
             $data['less30min'] = 0;
             $data['manufacture_member_id'] = Auth::user()->id;
 
-            Journal::create(array_merge($request->all(),$data));
+            Journal::create(array_merge($request->all(), $data));
 
             $users = User::select('*')
-               // ->join('roles','roles.id','=','users.role_id')
+                // ->join('roles','roles.id','=','users.role_id')
                 //  ->where('users.area_id',Auth::user()->area_id)
-                ->where('notifyDetectedFault',1)
+                ->where('notifyDetectedFault', 1)
                 //->where('roles.name','=','performer')
                 ->get();
 
-            $equipment = Equipment::where('id',$request->equipment_id)->first();
+            $equipment = Equipment::where('id', $request->equipment_id)->first();
             $msg = 'Поступила заявка на ремонт: ' . ucfirst($equipment->area->name) . ' ' . $equipment->name . ' ' . $request->disrepair_description . '';
 
             foreach ($users as $user) {
-                if ($user->phone) sendSMS($user->phone,$msg);
-                if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
-                    if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
-                        if( $curl = curl_init() ) {
-                            curl_setopt($curl, CURLOPT_URL, getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . '/sendMessage');
-                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl, CURLOPT_POST, true);
-                            curl_setopt($curl, CURLOPT_POSTFIELDS, "chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
-                            curl_exec($curl);
-                            curl_close($curl);
-                        }
-                    }
+                if ($user->phone) sendSMS($user->phone, $msg);
+
+            }
+
+            if (getSetting('TELEGRAM_API_URL') && getSetting('TELEGRAM_TOKEN') && getSetting('TELEGRAM_CHAT_ID')) {
+                if ($curl = curl_init()) {
+                    curl_setopt($curl, CURLOPT_URL, getSetting('TELEGRAM_API_URL') . getSetting('TELEGRAM_TOKEN') . '/sendMessage');
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, "chat_id=" . getSetting('TELEGRAM_CHAT_ID') . "&text=" . $msg);
+                    curl_exec($curl);
+                    curl_close($curl);
                 }
             }
 
@@ -114,7 +114,8 @@ class ApplicantController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function editForm($id)
+    public
+    function editForm($id)
     {
         if (!is_numeric($id)) abort(500);
 
@@ -125,23 +126,23 @@ class ApplicantController extends Controller
             $areas = Area::get();
             $area_options = [];
 
-            foreach($areas as $area) {
+            foreach ($areas as $area) {
                 $area_options[$area->id] = $area->name;
             }
 
-            $equipments = Equipment::select('equipment.id','equipment.name')
-                ->join('users','users.area_id','=','equipment.area_id')
-                ->where('users.id',Auth::user()->id)
+            $equipments = Equipment::select('equipment.id', 'equipment.name')
+                ->join('users', 'users.area_id', '=', 'equipment.area_id')
+                ->where('users.id', Auth::user()->id)
                 ->status()
                 ->get();
 
             $equipment_options = [];
 
-            foreach($equipments as $equipment) {
+            foreach ($equipments as $equipment) {
                 $equipment_options[$equipment->id] = $equipment->name;
             }
 
-            return view('applicant.create_edit', compact('journal','area_options','equipment_options'));
+            return view('applicant.create_edit', compact('journal', 'area_options', 'equipment_options'));
 
         }
 
@@ -152,7 +153,8 @@ class ApplicantController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public
+    function update(Request $request)
     {
         if (!is_numeric($request->id)) abort(500);
 
@@ -189,11 +191,12 @@ class ApplicantController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function accept(Request $request)
+    public
+    function accept(Request $request)
     {
         $journal = Journal::where('id', $request->id)->first();
 
-        if ( $journal) {
+        if ($journal) {
             if (diff_d($journal->created_at, date('Y-m-d H:i:s')) > 30)
                 $data['less30min'] = 0;
             else
@@ -214,7 +217,8 @@ class ApplicantController extends Controller
     /**
      * @param Request $request
      */
-    public function cancel(Request $request)
+    public
+    function cancel(Request $request)
     {
         Journal::where('id', $request->id)->update(['status' => -1]);
     }

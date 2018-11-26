@@ -28,29 +28,32 @@
                         <div class="row">
                             <div class="col-md-12 padding-bottom-10">
                                 <a href="{{ URL::route('frontend.applicant.applyform') }}"
-                                   class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Подать заявку</a>
+                                   class="btn btn-info btn-sm pull-left"><span class="fa fa-plus"> &nbsp;</span>Подать
+                                    заявку</a>
                             </div>
                         </div>
                     </div>
 
-                    <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
-                        <thead>
-                        <tr>
-                            <th data-hide="phone"> №</th>
-                            <th data-hide="phone"> Время заявки</th>
-                            <th data-hide="phone"> Заявка</th>
-                            <th data-hide="phone"> Оборудование</th>
-                            <th data-hide="phone"> Участок</th>
-                            <th data-hide="phone"> Ответственный за ремонт</th>
-                            <th data-hide="phone"> Описание проведенных работ</th>
-                            <th data-hide="phone"> Окончание работы</th>
-                            <th data-hide="phone"> Статус</th>
-                            <th data-hide="phone,tablet"> Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="itemList" class="table table-striped table-bordered table-hover" width="100%">
+                            <thead>
+                            <tr>
+                                <th data-hide="phone"> №</th>
+                                <th data-hide="phone"> Время заявки</th>
+                                <th data-hide="phone"> Заявка</th>
+                                <th data-hide="phone"> Оборудование</th>
+                                <th data-hide="phone"> Участок</th>
+                                <th data-hide="phone"> Ответственный за ремонт</th>
+                                <th data-hide="phone"> Описание проведенных работ</th>
+                                <th data-hide="phone"> Окончание работы</th>
+                                <th data-hide="phone"> Статус</th>
+                                <th data-hide="phone,tablet"> Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
                 <!-- end widget content -->
@@ -78,7 +81,7 @@
                 "bPaginate": false,
                 processing: true,
                 serverSide: true,
-                "order": [[ 0, "desc" ]],
+                "order": [[0, "desc"]],
                 ajax: '{!! URL::route('frontend.datatable.applications') !!}',
                 columns: [
                     {data: 'id', name: 'id'},
@@ -151,12 +154,12 @@
                         if (!isConfirm) return;
                         $.ajax({
                             url: SITE_URL + "/applicant/accept",
-                            data: { id: rowid, comment : $('#comment').val() },
+                            data: {id: rowid, comment: $('#comment').val()},
                             type: "POST",
                             dataType: "html",
                             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                             success: function () {
-                              //  $("#rowid_" + rowid).remove();
+                                //  $("#rowid_" + rowid).remove();
                                 $("#" + rowid).remove();
                                 swal("Сделано!", "Оборудование принято!", "success");
                             },
