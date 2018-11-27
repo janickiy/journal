@@ -78,7 +78,7 @@ class PerformerController extends Controller
 
             $journal = Journal::where('id', $request->id)->first();
 
-            $msg = 'Неисправность устранена: ' . $journal->equipment->name . ' Оборудование готово к работе';
+            $msg = "Неисправность устранена: " . $journal->equipment->name . "\n Оборудование готово к работе";
 
             if ($journal->manufacturemember->notifyFaultFix)  {
                 if ($journal->manufacturemember->phone) sendSMS($journal->manufacturemember->phone, $msg);

@@ -61,10 +61,10 @@ class WorktypesController extends Controller
     {
         if (!is_numeric($id)) abort(500);
 
-        $area = WorkTypes::where('id', $id)->first();
+        $worktypes = WorkTypes::where('id', $id)->first();
 
-        if ($area) {
-            return view('admin.worktypes.create_edit', compact('area'));
+        if ($worktypes) {
+            return view('admin.worktypes.create_edit', compact('worktypes'));
         }
 
         abort(404);
