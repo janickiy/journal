@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use DataTables;
-use App\Http\Requests;
 use App\Models\Journal;
-use App\Http\Start\Helpers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use URL;

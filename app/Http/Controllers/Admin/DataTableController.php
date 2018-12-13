@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use DataTables;
-use App\Http\Requests;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Settings;
@@ -174,17 +173,17 @@ class DataTableController extends Controller
         if (array_key_exists(0, $dates) && array_key_exists(1, $dates)) {
             $start = Carbon::parse($dates[0])->format('Y-m-d H:i:s');
             $end = Carbon::parse($dates[1])->format('Y-m-d H:i:s');
-            $journal = Journal::whereBetween('created_at', [$start, $end]);
+            $journal = Journal::whereBetween('created_at', [$start, $end])->with('area', 'equipment', 'worktypes', 'users', 'manufacturemember', 'servicemember');
         } else if (array_key_exists(0, $dates) && array_key_exists(1, $dates) and array_key_exists(0, $dates2) && array_key_exists(1, $dates2)) {
             $start = Carbon::parse($dates[0])->format('Y-m-d H:i:s');
             $end = Carbon::parse($dates[1])->format('Y-m-d H:i:s');
             $start2 = Carbon::parse($dates2[0])->format('Y-m-d H:i:s');
             $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
-            $journal = Journal::whereBetween('created_at', [$start, $end])->whereBetween('time_fixed', [$start2, $end2]);
+            $journal = Journal::whereBetween('created_at', [$start, $end])->whereBetween('time_fixed', [$start2, $end2])->with('area', 'equipment', 'worktypes', 'users', 'manufacturemember', 'servicemember');
         } else if(array_key_exists(0, $dates2) && array_key_exists(1, $dates2)) {
             $start2 = Carbon::parse($dates2[0])->format('Y-m-d H:i:s');
             $end2 = Carbon::parse($dates2[1])->format('Y-m-d H:i:s');
-            $journal = Journal::whereBetween('time_fixed', [$start2, $end2]);
+            $journal = Journal::whereBetween('time_fixed', [$start2, $end2])->with('area', 'equipment', 'worktypes', 'users', 'manufacturemember', 'servicemember');
         } else {
            // $journal = Journal::select('*');
             $journal = Journal::with('area', 'equipment', 'worktypes', 'users', 'manufacturemember', 'servicemember');
@@ -236,6 +235,12 @@ class DataTableController extends Controller
                 return appStatus($journal->status);
             })
 
-           ->make(true);
+            ->addColumn('actions', function ($journal) {
+
+                return '<a class="btn btn-xs btn-danger deleteRow" id="' . $journal->id . '"><span class="fa fa-remove"></span></a>';
+
+            })
+
+         ->rawColumns(['actions'])->make(true);
     }
 }

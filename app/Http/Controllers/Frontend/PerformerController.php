@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Start\Helpers;
 use App\Models\Journal;
 use App\Models\WorkTypes;
 use App\Http\Controllers\Controller;
@@ -78,7 +76,7 @@ class PerformerController extends Controller
 
             $journal = Journal::where('id', $request->id)->first();
 
-            $msg = "Неисправность устранена: " . $journal->equipment->name . "\nОборудование готово к работе";
+            $msg = "Неисправность устранена:\n" . $journal->equipment->name . "\nОборудование готово к работе";
 
             if ($journal->manufacturemember->notifyFaultFix)  {
                 if ($journal->manufacturemember->phone) sendSMS($journal->manufacturemember->phone, $msg);

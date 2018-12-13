@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Models\Equipment;
 use App\Models\Area;
-use App\Http\Start\Helpers;
 use Validator;
 use App\Http\Controllers\Controller;
 
